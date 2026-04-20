@@ -40,6 +40,18 @@ Before substantive implementation:
 3. create the first baseline audit entry
 4. log any initial scope or sequencing decision that materially shapes the work
 
+## Shared status vocabulary
+
+Use the same core execution states as project-pack mode:
+
+- `not_started`
+- `in_progress`
+- `blocked`
+- `complete`
+- `deferred`
+
+Use phase names and narrative sections for extra lifecycle detail.
+
 ## Update rule
 
 During implementation:

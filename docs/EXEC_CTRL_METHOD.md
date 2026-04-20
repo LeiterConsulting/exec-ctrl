@@ -87,7 +87,7 @@ For initiative mode, the same idea applies in lighter form:
 4. initiative decision log
 5. any underlying project docs the initiative depends on
 
-## Required status vocabulary
+## Shared core status vocabulary
 
 Use a small closed set:
 
@@ -99,14 +99,9 @@ Use a small closed set:
 
 Do not create ad hoc status words unless the project has a very strong reason.
 
-For initiative mode, a more expressive set can be useful when it improves clarity:
+This shared vocabulary should be used in both project mode and initiative mode.
 
-- `defined`
-- `designing`
-- `validating`
-- `audit_ready`
-
-Use these only when the extra state detail helps control the work.
+Use phase names, checkpoints, and narrative status sections to express lifecycle nuance such as activation, definition, validation, or closeout.
 
 ## Phase advancement rule
 
@@ -175,6 +170,13 @@ When a future user says "use the exec-ctrl repo to do the following work", the a
 2. default to initiative mode unless the request clearly demands whole-project governance
 3. create the control artifacts before substantive implementation
 4. keep those artifacts current while the work is executed and validated
+
+## Cookbook rule
+
+If the future agent needs examples of how a request should map to exec-ctrl behavior, it should consult:
+
+- [docs/EXEC_CTRL_AGENT_PROMPT_COOKBOOK.md](EXEC_CTRL_AGENT_PROMPT_COOKBOOK.md)
+- [examples/initiative-examples](../examples/initiative-examples)
 
 ## Practical guidance
 

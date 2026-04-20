@@ -17,8 +17,10 @@ It can be applied in two ways:
 
 - a generic method guide in [docs/EXEC_CTRL_METHOD.md](docs/EXEC_CTRL_METHOD.md)
 - a bounded-work guide in [docs/EXEC_CTRL_INITIATIVE_MODE.md](docs/EXEC_CTRL_INITIATIVE_MODE.md)
+- an agent prompt cookbook in [docs/EXEC_CTRL_AGENT_PROMPT_COOKBOOK.md](docs/EXEC_CTRL_AGENT_PROMPT_COOKBOOK.md)
 - a starter template pack in [templates/project-pack](templates/project-pack)
 - a bounded-work starter pack in [templates/initiative-pack](templates/initiative-pack)
+- generic example initiative packs in [examples/initiative-examples](examples/initiative-examples)
 - numbered template docs for the authoritative exec-ctrl layer:
   - `13_EXEC_CTRL_OVERVIEW.md`
   - `14_EXEC_CTRL_TARGET_PRODUCT.md`
@@ -75,6 +77,18 @@ Use [templates/initiative-pack](templates/initiative-pack) when:
 
 If the user request is bounded and does not require a whole-product execution layer, initiative-pack mode should be the default.
 
+## Shared status vocabulary
+
+Both operating modes should use the same core execution states unless a repository has a very strong reason not to:
+
+- `not_started`
+- `in_progress`
+- `blocked`
+- `complete`
+- `deferred`
+
+Phase names should carry the lifecycle nuance. Status words should stay compact and consistent.
+
 ## Core rule
 
 The current phase is the earliest phase that is not `complete`.
@@ -91,6 +105,8 @@ For initiative-pack mode, the same discipline applies at the initiative level: w
 4. Fill in the target product, page inventory, phase plan, tests, and live status for the project.
 5. For bounded initiative control, copy the files from [templates/initiative-pack](templates/initiative-pack) into a folder such as `docs/exec_ctrl/` in the target repository and rename them to match the initiative.
 6. During implementation, update the status, audit, and evidence docs whenever reality changes.
+
+If you want a concrete starting point, use one of the generic example packs in [examples/initiative-examples](examples/initiative-examples) and adapt it to the target effort.
 
 ## Agent invocation pattern
 

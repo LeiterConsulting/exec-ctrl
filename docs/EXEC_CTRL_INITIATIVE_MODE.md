@@ -170,23 +170,17 @@ Log any material change in:
 - validation strategy
 - deferral choice
 
-## State vocabulary
+## Shared status vocabulary
 
-Initiative mode can use a more expressive state model than the minimal project-pack vocabulary when that helps execution clarity.
-
-Recommended values:
+Initiative mode should use the same core execution states as project-pack mode:
 
 - `not_started`
-- `defined`
-- `designing`
 - `in_progress`
 - `blocked`
-- `validating`
-- `audit_ready`
 - `complete`
 - `deferred`
 
-Use only the states that add real clarity.
+Lifecycle detail should be carried by the current phase, checkpoint names, and current-status narrative rather than extra status words.
 
 ## Completion rule
 

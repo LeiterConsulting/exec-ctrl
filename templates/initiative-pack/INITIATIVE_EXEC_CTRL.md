@@ -66,6 +66,18 @@ State the bounded work outcome in concrete terms.
 - authoritative evidence exists for the claimed completion state
 - deferred items, if any, are explicit
 
+## Shared Status Vocabulary
+
+Use the shared core execution states:
+
+- `not_started`
+- `in_progress`
+- `blocked`
+- `complete`
+- `deferred`
+
+Use the current phase and the narrative status sections to express activation, definition, validation, or closeout detail.
+
 ## Execution Process
 
 ### Phase 0. Activate
