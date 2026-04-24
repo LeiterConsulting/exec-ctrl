@@ -1,0 +1,7 @@
+# Planning Backlog Closeout Audit Log
+
+| Date | Checkpoint | Evidence Reviewed | Verdict | Gaps | Next Action |
+| --- | --- | --- | --- | --- | --- |
+| `2026-04-24` | `Baseline audit` | `docs/planning/FUTURE_ENHANCEMENTS.md`, file search for missing scorecard, coherence-failure, and test-ready surfaces, `examples/initiative-examples/`, active user direction | `pass_with_gaps` | the repo has a defined remaining backlog, but none of the corresponding scorecard, calibration, or review surfaces exist yet | add the missing generic docs and example packs, then retire the planning entries explicitly |
+| `2026-04-24` | `Surface build audit` | new scorecards, calibration docs, test-ready review, new example packs, updated README, updated rubric and self-hosting guides, updated planning doc | `pass` | the remaining defined backlog surfaces now exist and the planning area explicitly records their promotion | run the final coherence review and synchronize the proof artifacts |
+| `2026-04-24` | `Coherence and exhaustion audit` | generic docs, live `.github` guidance, new example packs, planning doc, and repo-local proof artifacts | `pass` | no must-pass coherence gaps remain and the planning surface now shows no defined backlog items | close the initiative |

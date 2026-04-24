@@ -53,6 +53,11 @@ That ordering matters because:
 - prompts, templates, and examples operationalize the norm
 - repo-local records prove the norm was used in one bounded case
 
+
+For recurring bounded refinement inside the `exec-ctrl` repo itself, use [EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md](EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md) to inspect planning, choose the next slice, and activate control before substantive edits begin.
+
+For recurring ambiguous self-hosting refinements, use [EXEC_CTRL_METHOD_REPO_REFINEMENT_SCORECARDS.md](EXEC_CTRL_METHOD_REPO_REFINEMENT_SCORECARDS.md) to calibrate the rubric outcome against worked examples.
+
 ## Recommended workflow
 
 ### 1. Baseline the gap
@@ -110,6 +115,8 @@ This prevents repo-local evidence from becoming the only place the refined behav
 
 Use [EXEC_CTRL_SELF_HOSTING_COHERENCE_CHECKLIST.md](EXEC_CTRL_SELF_HOSTING_COHERENCE_CHECKLIST.md) as the default validation aid for this step.
 
+Use [EXEC_CTRL_SELF_HOSTING_COHERENCE_FAILURE_CALIBRATION.md](EXEC_CTRL_SELF_HOSTING_COHERENCE_FAILURE_CALIBRATION.md) when reviewers need examples of the failure patterns that usually drive `pass_with_gaps` versus `fail` outcomes.
+
 If the workspace-guidance prompt pack is installed, `.github/prompts/exec-ctrl-checklist-review.prompt.md` can run that review as a one-command workflow.
 
 Check that:
@@ -166,15 +173,14 @@ Used for:
 - `Use exec-ctrl to improve exec-ctrl itself so self-hosting is a first-class pattern.`
 - `Govern this prompt-library refinement under exec-ctrl and keep the generic method ahead of the local example records.`
 - `Use exec-ctrl to tighten the relationship between this governance repo's docs, templates, and prompt bundles.`
+- `Continue refining this repo. Inspect the planning area, choose one bounded slice, and keep the control records current while you implement it.`
 
 ## Suggested future extensions
 
 Track self-hosting and method-evolution follow-on ideas in [planning/FUTURE_ENHANCEMENTS.md](planning/FUTURE_ENHANCEMENTS.md).
 
-Current candidates already captured there include:
+When the planning backlog is exhausted, treat future self-hosting work as open-ended field-use follow-on work rather than as a standing list of defined candidates.
 
-1. more generic examples for prompt-library evolution, template-library hardening, and governance-model migrations
-2. example review cases for recurring self-hosting coherence failures so checklist outcomes are easier to calibrate
-3. example scorecards for common ambiguous method-repo refinements so rubric outcomes are easier to compare over time
+When the defined planning backlog is exhausted and broader field use is the next question, use [EXEC_CTRL_METHOD_REPO_TEST_READY_REVIEW.md](EXEC_CTRL_METHOD_REPO_TEST_READY_REVIEW.md) as the lightweight readiness checkpoint.
 
 This guide keeps self-hosting grounded in the same evidence, authority, and bounded-scope rules as any other exec-ctrl initiative.

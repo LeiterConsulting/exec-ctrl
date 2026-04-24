@@ -1,0 +1,8 @@
+# Workspace Guidance Validation Checklist Decision Log
+
+| ID | Date | Decision | Rationale | Consequence |
+| --- | --- | --- | --- | --- |
+| `D-001` | `2026-04-24` | govern the checklist addition under initiative-mode exec-ctrl | this is a bounded self-hosting refinement rather than a whole-repository execution-model redesign | the repo records the work using the same discipline it recommends for other method evolutions |
+| `D-002` | `2026-04-24` | add one standalone checklist doc under `docs/` | copied workspace-guidance validation needs a reusable generic surface rather than scattered reminder sentences across multiple docs | later bootstrap flows can point to one authoritative checklist |
+| `D-003` | `2026-04-24` | route the README, method bootstrap guidance, repo-link bootstrap guide, workspace-guidance README, and planning surface to the new checklist | the checklist only helps if users encounter it at the point where they copy and customize the workspace-guidance pack | the validation step becomes discoverable in both generic method docs and template-installation guidance |
+| `D-004` | `2026-04-24` | leave automation and additional prompt bundles out of this slice | `FE-001` is about copied-guidance validation, and widening into enforcement or new prompt packs would blur the bounded objective | the refinement closes cleanly while later candidates remain explicit in planning |

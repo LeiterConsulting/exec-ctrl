@@ -1,0 +1,9 @@
+# Current Workspace Bootstrap Intake Decision Log
+
+| ID | Date | Decision | Rationale | Consequence |
+| --- | --- | --- | --- | --- |
+| `D-001` | `2026-04-24` | govern the scenario clarification under initiative-mode exec-ctrl | this is a bounded self-hosting refinement to the method's intake behavior, not a whole-repository redesign | the field-use scenario can be tightened without reopening the full planning model |
+| `D-002` | `2026-04-24` | clarify the rule inside the existing method and bootstrap docs instead of adding a separate onboarding guide | the gap is one missing intake distinction, not an entirely missing workflow family | the method stays compact and the new scenario becomes discoverable where agents already look first |
+| `D-003` | `2026-04-24` | interpret a lone `exec-ctrl` repo URL in prompt text as the method source and the current workspace as the governed target | without that rule, an agent could incorrectly pivot into the `exec-ctrl` repo itself instead of governing the user's workspace | the intake behavior is now explicit across the method docs, cookbook, and bootstrap prompt |
+| `D-004` | `2026-04-24` | close the field-use clarification directly without creating a new standing planning item | the gap surfaced in concrete use and was small enough to fix immediately | the planning surface can stay exhausted while the proof artifacts record the field-use-driven refinement |
+| `D-005` | `2026-04-24` | keep loose-material concept intake as an open-ended field-use watchpoint rather than a defined backlog item | one scenario is enough to justify clarifying target-versus-method interpretation, but not yet enough to justify a separate guide or prompt family | future repeated use can promote a concept-intake refinement later if the gap proves recurring |

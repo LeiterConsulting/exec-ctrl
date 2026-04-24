@@ -65,13 +65,15 @@ Provides a reusable chat prompt for migration-shaped work that needs baseline in
 
 1. Copy the `.github/` folder from this pack into the target repository.
 2. Replace all placeholders in `.github/copilot-instructions.md` with the real repo commands and paths.
-3. Adjust the doc locations if the repo uses something other than `docs/exec_ctrl/` or the `13` through `18` numbering model.
-4. Remove any duplicated or conflicting agent guidance already present in the target repo.
+3. Run [../../docs/EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md](../../docs/EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md) before treating the copied guidance as authoritative.
+4. Adjust the doc locations if the repo uses something other than `docs/exec_ctrl/` or the `13` through `18` numbering model.
+5. Remove any duplicated or conflicting agent guidance already present in the target repo.
 
 ## Important constraints
 
 - use `copilot-instructions.md` or `AGENTS.md`, not both
 - do not leave placeholder build and test commands in the target repo
+- do not skip the validation checklist after copying the template pack
 - keep the copied guidance smaller than the control docs themselves; the control docs remain the authoritative execution surface
 
 ## Pairing recommendation

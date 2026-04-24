@@ -75,11 +75,17 @@ If the boundary between one bounded slice and a whole-system redesign is unclear
 
 When the user provides a repository link and expects the agent to activate exec-ctrl in the target workspace, add a lightweight guidance layer in that target repo.
 
+If the user mentions the `exec-ctrl` repo only as a method reference and does not provide another target repo link, treat the current workspace as the target workspace.
+
+In that case, inspect the local docs, notes, and idea fragments in the current workspace as the concept inputs before choosing project mode or initiative mode.
+
 Recommended files:
 
 - `.github/copilot-instructions.md`
 - `.github/instructions/exec-ctrl-docs.instructions.md`
 - `.github/prompts/bootstrap-exec-ctrl.prompt.md`
+
+After copying the workspace-guidance pack, validate the copied files with [EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md](EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md) before treating them as authoritative.
 
 These files do not replace the control docs.
 

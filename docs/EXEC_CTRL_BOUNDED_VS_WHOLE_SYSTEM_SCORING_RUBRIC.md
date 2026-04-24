@@ -11,6 +11,8 @@ This rubric does not replace user direction.
 
 It helps structure the decision when the request sits between those two shapes.
 
+For worked examples, use [EXEC_CTRL_REPO_LINK_SCORECARDS.md](EXEC_CTRL_REPO_LINK_SCORECARDS.md) for repo-link requests and [EXEC_CTRL_METHOD_REPO_REFINEMENT_SCORECARDS.md](EXEC_CTRL_METHOD_REPO_REFINEMENT_SCORECARDS.md) for self-hosting method-repo refinements.
+
 If the workspace-guidance prompt pack is installed, you can run the scoring step as a one-command workflow with `.github/prompts/exec-ctrl-rubric-review.prompt.md`.
 
 ## When to use it

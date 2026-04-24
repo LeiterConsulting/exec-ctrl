@@ -1,0 +1,9 @@
+# First Session Bootstrap Guidance Decision Log
+
+| ID | Date | Decision | Rationale | Consequence |
+| --- | --- | --- | --- | --- |
+| `D-001` | `2026-04-24` | govern the follow-on guidance work under initiative-mode exec-ctrl | this is a bounded self-hosting clarification to the bootstrap teaching surfaces, not a whole-system redesign | the work can be completed as one compact refinement |
+| `D-002` | `2026-04-24` | add the routing table and copyable first-session prompt to existing generic docs instead of creating a new standalone guide | the repo already has the right bootstrap surfaces; the gap is discoverability and invocation ease, not missing workflow authority | the method remains compact and the new aids appear where users already look |
+| `D-003` | `2026-04-24` | place the compact routing table in the bootstrap guide and make the current-workspace cookbook example explicitly copyable | the bootstrap guide is the right authority surface for three-way entry routing, while the cookbook is the natural place for a reusable prompt example | future users can both decide quickly and copy exact wording without scanning multiple unrelated docs |
+| `D-004` | `2026-04-24` | align the reusable bootstrap prompt with the self-hosting override instead of leaving that distinction only in the docs | the operational surface should not lag the documented three-way routing behavior | the bootstrap prompt now makes the `exec-ctrl`-itself branch explicit before bootstrap proceeds |
+| `D-005` | `2026-04-24` | close the refinement directly without updating planning | the planning backlog is already exhausted and this work came from live usage rather than a standing candidate | the proof artifacts record the field-use-driven refinement while the planning surface remains intentionally empty |

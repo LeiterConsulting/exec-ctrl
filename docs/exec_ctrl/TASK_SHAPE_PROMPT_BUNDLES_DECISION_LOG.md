@@ -1,0 +1,8 @@
+# Task-Shape Prompt Bundles Decision Log
+
+| ID | Date | Decision | Rationale | Consequence |
+| --- | --- | --- | --- | --- |
+| `D-001` | `2026-04-24` | govern the prompt-bundle addition under initiative-mode exec-ctrl | this is a bounded self-hosting refinement rather than a whole-repository redesign | the repo keeps using its own method while improving live agent guidance |
+| `D-002` | `2026-04-24` | limit the slice to audit-remediation, release closeout, and migration bootstrap prompts | these are the next recurring task shapes already taught by the template pack and named in planning, and they form a coherent bounded set | the refinement improves prompt coverage without copying every optional template prompt into live guidance |
+| `D-003` | `2026-04-24` | route only the live always-on guidance to the new prompt set instead of widening the same slice into broader README changes | `.github/copilot-instructions.md` is the primary discovery surface for future agent sessions in this workspace, and wider entry-doc edits were not required to make the prompts discoverable | the refinement stays bounded while still making the new prompts easy to find from workspace context |
+| `D-004` | `2026-04-24` | promote `FE-002` out of planning and advance `FE-003` as the next bounded candidate | the new task-shape prompt coverage is complete, so the planning surface should point to the next ambiguity-reduction slice instead of a finished prompt-installation gap | future sessions can move on to scorecard examples without reopening the same prompt bundle work |

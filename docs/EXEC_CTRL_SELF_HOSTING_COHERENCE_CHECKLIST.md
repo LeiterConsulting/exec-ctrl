@@ -6,6 +6,8 @@ Use this checklist during `Phase 4 Validate` for bounded method-evolution or sel
 
 Its job is to test whether the changed surfaces still teach one coherent workflow rather than a mixture of generic guidance, prompt behavior, and repo-local proof artifacts that disagree with each other.
 
+For recurring failure-pattern calibration, use [EXEC_CTRL_SELF_HOSTING_COHERENCE_FAILURE_CALIBRATION.md](EXEC_CTRL_SELF_HOSTING_COHERENCE_FAILURE_CALIBRATION.md) alongside this checklist.
+
 If the workspace-guidance prompt pack is installed, you can run this review as a one-command workflow with `.github/prompts/exec-ctrl-checklist-review.prompt.md`.
 
 ## How to use it

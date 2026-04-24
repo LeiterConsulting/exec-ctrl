@@ -18,14 +18,21 @@ It can be applied in two ways:
 - a generic method guide in [docs/EXEC_CTRL_METHOD.md](docs/EXEC_CTRL_METHOD.md)
 - a bounded-work guide in [docs/EXEC_CTRL_INITIATIVE_MODE.md](docs/EXEC_CTRL_INITIATIVE_MODE.md)
 - an agent prompt cookbook in [docs/EXEC_CTRL_AGENT_PROMPT_COOKBOOK.md](docs/EXEC_CTRL_AGENT_PROMPT_COOKBOOK.md)
+- an agent assessment loop for self-hosted repo refinement in [docs/EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md](docs/EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md)
 - a repo-link bootstrap guide in [docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md](docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md)
+- repo-link scorecards in [docs/EXEC_CTRL_REPO_LINK_SCORECARDS.md](docs/EXEC_CTRL_REPO_LINK_SCORECARDS.md)
+- method-repo refinement scorecards in [docs/EXEC_CTRL_METHOD_REPO_REFINEMENT_SCORECARDS.md](docs/EXEC_CTRL_METHOD_REPO_REFINEMENT_SCORECARDS.md)
+- a workspace-guidance validation checklist in [docs/EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md](docs/EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md)
 - a self-hosting and method-evolution guide in [docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md](docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md)
 - a self-hosting coherence checklist in [docs/EXEC_CTRL_SELF_HOSTING_COHERENCE_CHECKLIST.md](docs/EXEC_CTRL_SELF_HOSTING_COHERENCE_CHECKLIST.md)
+- a coherence-failure calibration guide in [docs/EXEC_CTRL_SELF_HOSTING_COHERENCE_FAILURE_CALIBRATION.md](docs/EXEC_CTRL_SELF_HOSTING_COHERENCE_FAILURE_CALIBRATION.md)
 - a bounded-vs-whole-system scoring rubric in [docs/EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md](docs/EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md)
+- a lightweight test-ready review in [docs/EXEC_CTRL_METHOD_REPO_TEST_READY_REVIEW.md](docs/EXEC_CTRL_METHOD_REPO_TEST_READY_REVIEW.md)
 - a non-operational planning area for future method enhancements in [docs/planning](docs/planning)
 - a starter template pack in [templates/project-pack](templates/project-pack)
 - a bounded-work starter pack in [templates/initiative-pack](templates/initiative-pack)
 - a workspace-guidance template pack in [templates/workspace-guidance](templates/workspace-guidance)
+- live workspace guidance for this repository under `.github/`
 - generic example initiative packs in [examples/initiative-examples](examples/initiative-examples)
 - numbered template docs for the authoritative exec-ctrl layer:
   - `13_EXEC_CTRL_OVERVIEW.md`
@@ -107,6 +114,10 @@ For initiative-pack mode, the same discipline applies at the initiative level: w
 
 If the user brings a task idea plus a repository link and expects the agent to stand up exec-ctrl in the target repo, use [docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md](docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md).
 
+If the user mentions the `exec-ctrl` repo itself only as a method reference, such as `Use the exec-ctrl process: https://github.com/LeiterConsulting/exec-ctrl`, and does not provide another target repo link, treat the current workspace as the target repo and the `exec-ctrl` URL as the method source.
+
+That guide now includes a quick routing table for current-workspace bootstrap, external-repo bootstrap, and improving `exec-ctrl` itself, plus a copyable first-session prompt for a brand-new or lightly populated workspace.
+
 That guide covers:
 
 - mode selection from the request shape
@@ -127,21 +138,29 @@ That guide covers:
 
 Use [docs/EXEC_CTRL_SELF_HOSTING_COHERENCE_CHECKLIST.md](docs/EXEC_CTRL_SELF_HOSTING_COHERENCE_CHECKLIST.md) during validation when you need to check whether the changed docs, prompts, templates, examples, and proof artifacts still teach one coherent workflow.
 
+If the user asks to continue refining this repository from workspace context, use [docs/EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md](docs/EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md) and the installed guidance under `.github/` first.
+
+If a repo-link or self-hosting request is ambiguous, use the scorecards in [docs/EXEC_CTRL_REPO_LINK_SCORECARDS.md](docs/EXEC_CTRL_REPO_LINK_SCORECARDS.md) and [docs/EXEC_CTRL_METHOD_REPO_REFINEMENT_SCORECARDS.md](docs/EXEC_CTRL_METHOD_REPO_REFINEMENT_SCORECARDS.md) to calibrate the live rubric pass.
+
 If the boundary between one bounded slice and a whole-system redesign is unclear, use [docs/EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md](docs/EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md) before choosing the control path.
 
 If you need to capture likely next improvements without making them look active, use the non-operational planning area in [docs/planning](docs/planning). That area is for candidate enhancements and roadmap shaping, while [docs/exec_ctrl](docs/exec_ctrl) remains the operational evidence area for active or completed bounded refinements.
 
+When the defined planning backlog is exhausted and you need an explicit broader-readiness checkpoint, use [docs/EXEC_CTRL_METHOD_REPO_TEST_READY_REVIEW.md](docs/EXEC_CTRL_METHOD_REPO_TEST_READY_REVIEW.md).
+
 ## Quick start
 
 1. If the starting point is a repo link plus a task, follow [docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md](docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md) first.
+  If the only repo link is the `exec-ctrl` repo itself, use the same bootstrap guide but treat the current workspace as the target.
 2. If the starting point is to improve `exec-ctrl` itself or another method repository, follow [docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md](docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md) first.
-3. Choose the operating mode.
-4. For full-project control, copy the files from [templates/project-pack](templates/project-pack) into the target project's docs folder.
-5. Keep the numbering so the exec-ctrl layer sits after the original concept pack.
-6. Fill in the target product, page inventory, phase plan, tests, and live status for the project.
-7. For bounded initiative control, copy the files from [templates/initiative-pack](templates/initiative-pack) into a folder such as `docs/exec_ctrl/` in the target repository and rename them to match the initiative.
-8. If the repository lacks agent guidance, copy the files from [templates/workspace-guidance](templates/workspace-guidance) and customize them for the target repo.
-9. During implementation, update the status, audit, and evidence docs whenever reality changes.
+3. If the user asks to continue refining this repository itself, use [docs/EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md](docs/EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md) and the repo-local `.github/` prompts first.
+4. Choose the operating mode.
+5. For full-project control, copy the files from [templates/project-pack](templates/project-pack) into the target project's docs folder.
+6. Keep the numbering so the exec-ctrl layer sits after the original concept pack.
+7. Fill in the target product, page inventory, phase plan, tests, and live status for the project.
+8. For bounded initiative control, copy the files from [templates/initiative-pack](templates/initiative-pack) into a folder such as `docs/exec_ctrl/` in the target repository and rename them to match the initiative.
+9. If the repository lacks agent guidance, copy the files from [templates/workspace-guidance](templates/workspace-guidance), customize them for the target repo, and run [docs/EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md](docs/EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md).
+10. During implementation, update the status, audit, and evidence docs whenever reality changes.
 
 If you want a concrete starting point, use one of the generic example packs in [examples/initiative-examples](examples/initiative-examples) and adapt it to the target effort.
 

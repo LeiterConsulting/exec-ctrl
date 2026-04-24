@@ -36,6 +36,36 @@ Files included:
 - audit log
 - decision log
 
+### Prompt Library Evolution
+
+Use this pattern when the initiative expands or hardens recurring prompt surfaces so the method becomes easier to invoke from workspace context.
+
+Files included:
+
+- control record
+- audit log
+- decision log
+
+### Template Library Hardening
+
+Use this pattern when the initiative tightens reusable templates and their validation path to reduce copy drift without changing the core method.
+
+Files included:
+
+- control record
+- audit log
+- decision log
+
+### Governance Model Migration
+
+Use this pattern when one bounded governance workflow must move into exec-ctrl with explicit sequencing and fallback posture.
+
+Files included:
+
+- control record
+- audit log
+- decision log
+
 ## How to use these examples
 
 1. choose the example closest to the requested initiative shape

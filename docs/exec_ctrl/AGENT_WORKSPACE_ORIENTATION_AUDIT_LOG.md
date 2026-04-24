@@ -1,0 +1,7 @@
+# Agent Workspace Orientation Audit Log
+
+| Date | Checkpoint | Evidence Reviewed | Verdict | Gaps | Next Action |
+| --- | --- | --- | --- | --- | --- |
+| `2026-04-24` | `Baseline audit` | repo file search for `.github/**`, `README.md`, `docs/planning/FUTURE_ENHANCEMENTS.md`, active user direction | `pass_with_gaps` | the repo teaches workspace guidance through templates and generic docs, but the root workspace lacks live guidance files and a repo-local orientation loop for agent sessions | install customized repo-local guidance and add a repeatable assessment-loop surface |
+| `2026-04-24` | `Guidance and routing audit` | `docs/EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md`, `.github/copilot-instructions.md`, `.github/instructions/exec-ctrl-docs.instructions.md`, `.github/prompts/`, `README.md`, `docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md`, `docs/planning/FUTURE_ENHANCEMENTS.md` | `pass` | the repo now has live guidance, a reusable assessment loop, and entry-doc routing that points future agent sessions to the right surfaces | record the coherence result and close the refinement |
+| `2026-04-24` | `Coherence and completion audit` | self-hosting coherence checklist, changed generic docs, installed `.github/` guidance, planning doc, and repo-local proof artifacts | `pass` | no must-pass coherence gaps remain | close the refinement |

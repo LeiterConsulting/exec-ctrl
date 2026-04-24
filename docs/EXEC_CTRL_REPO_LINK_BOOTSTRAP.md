@@ -24,6 +24,8 @@ When the request is ambiguous, prefer initiative mode and state the boundary exp
 
 If ambiguity remains after repo inspection, use [EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md](EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md) before choosing the control path.
 
+For recurring mixed-signal repo-link requests, use [EXEC_CTRL_REPO_LINK_SCORECARDS.md](EXEC_CTRL_REPO_LINK_SCORECARDS.md) to calibrate the rubric outcome against worked examples.
+
 If the workspace-guidance prompt pack is installed, you can also invoke `.github/prompts/exec-ctrl-rubric-review.prompt.md` to run that scoring pass directly.
 
 ## Required intake inputs
@@ -37,6 +39,26 @@ The agent should collect or infer:
 - any existing authoritative docs the new control layer must respect
 
 Do not stop for extra clarification unless missing information would block an accurate bootstrap.
+
+## Special case: the prompt references `exec-ctrl` itself
+
+If the user's prompt says something like `Use the exec-ctrl process: https://github.com/LeiterConsulting/exec-ctrl` and does not include another target repo link, treat the current workspace as the target repository.
+
+In that case:
+
+- use the `exec-ctrl` URL as the method source, not as the governed target repo
+- inspect the current workspace docs, notes, and idea fragments as the concept inputs
+- infer the likely outcome and boundary from the local materials plus the user's prompt
+- choose initiative mode or project-pack mode for the current workspace using the normal rules
+- create the control artifacts in the current workspace before substantive implementation begins
+
+## Quick routing table
+
+| Starting point | Governed target | Primary guide | Typical mode | First move |
+| --- | --- | --- | --- | --- |
+| current workspace plus `exec-ctrl` URL only | the current workspace | this guide | usually project-pack mode unless the request is clearly one bounded slice | inspect the local docs, notes, and prompts, then create the control artifacts in the current workspace |
+| external repo link plus task | the external target repository | this guide | initiative mode by default; project-pack mode when the whole repo needs execution control | inspect the external repo, choose mode, and create the required control artifacts there |
+| improve `exec-ctrl` itself | the `exec-ctrl` repo | [EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md](EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md) and [EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md](EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md) | initiative mode by default | activate a bounded self-hosting refinement before changing docs, prompts, templates, or examples |
 
 ## Bootstrap workflow
 
@@ -90,6 +112,8 @@ If the target repo lacks equivalent agent guidance, copy and adapt the files fro
 - any task-shape prompt bundles that match the initiative, such as audit, refactor, release closeout, or migration bootstrap
 
 Customize the placeholders immediately.
+
+Then run [EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md](EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md) before relying on the copied guidance in later sessions.
 
 The goal is to make later agent sessions keep using the same authority model rather than treating the bootstrap as a one-off event.
 
@@ -160,6 +184,12 @@ Common optional outputs:
 
 ## Prompt shapes that should work well
 
+### Current workspace first session
+
+`Use the exec-ctrl process: https://github.com/LeiterConsulting/exec-ctrl`
+
+`Treat this current workspace as the governed target. I have product notes, rough requirements, and an early prompt here. Inspect what exists, decide whether this should start in project-pack mode or initiative mode, create the required exec-ctrl docs in this workspace, and add workspace guidance if it is missing. Before substantive implementation, state the chosen mode, the governed target, the must-pass criteria, and the active phase.`
+
 ### Repo link plus bounded initiative
 
 `Use the exec-ctrl repo with https://github.com/example/team-service to govern a diagnostics hardening effort for the admin API. Keep it bounded to operator-visible reliability and do not widen into a broader platform rewrite.`
@@ -184,11 +214,10 @@ Common optional outputs:
 
 Track future repo-link and bootstrap enhancements in [planning/FUTURE_ENHANCEMENTS.md](planning/FUTURE_ENHANCEMENTS.md) instead of treating them as live operational work.
 
-Current candidates already captured there include:
+When the planning backlog is exhausted, treat future repo-link refinement as open-ended field-use follow-on work rather than as a standing list of defined candidates.
 
-1. a validation checklist for copied workspace-guidance templates so placeholders are not left behind
-2. more example prompts for data migrations, release readiness, and incident remediation
-3. example scorecards for recurring ambiguous repo-link requests so the rubric is easier to calibrate over time
+1. open-ended future prompt expansion when repeated need emerges in field use
+2. future calibration work only when new recurring ambiguity patterns show up that the current scorecards do not cover
 
 This guide intentionally stops short of automation.
 

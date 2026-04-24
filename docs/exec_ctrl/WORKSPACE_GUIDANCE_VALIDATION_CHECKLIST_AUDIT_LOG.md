@@ -1,0 +1,7 @@
+# Workspace Guidance Validation Checklist Audit Log
+
+| Date | Checkpoint | Evidence Reviewed | Verdict | Gaps | Next Action |
+| --- | --- | --- | --- | --- | --- |
+| `2026-04-24` | `Baseline audit` | `docs/planning/FUTURE_ENHANCEMENTS.md`, `docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md`, `templates/workspace-guidance/README.md`, active user direction | `pass_with_gaps` | the repo already identifies placeholder drift as a practical failure mode, but it does not yet provide one checklist that validates copied workspace guidance end to end | add a standalone checklist and route the bootstrap surfaces to it |
+| `2026-04-24` | `Checklist routing audit` | `docs/EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md`, `README.md`, `docs/EXEC_CTRL_METHOD.md`, `docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md`, `templates/workspace-guidance/README.md`, `docs/planning/FUTURE_ENHANCEMENTS.md` | `pass` | the new checklist exists, the main routing docs point to it, and `FE-001` no longer appears as untouched planning backlog | synchronize the repo-local control artifacts to the completed state |
+| `2026-04-24` | `Completion audit` | final checklist doc, routing docs, planning update, and self-governing records | `pass` | no must-pass gaps remain | close the refinement |

@@ -22,28 +22,20 @@ When one of these items becomes active work:
 
 ## Near-term planning themes
 
-### 1. Bootstrap hardening
+Recently promoted from planning:
 
-| ID | State | Enhancement | Why it matters | Suggested next slice |
-| --- | --- | --- | --- | --- |
-| `FE-001` | `near_term` | add a validation checklist for copied workspace-guidance templates | copied prompt and instruction packs can drift when placeholders are left behind | create a bounded guide or checklist that validates placeholders, target-repo substitutions, and repo-specific build/test guidance |
-| `FE-002` | `candidate` | add more task-shape prompt bundles for data migrations, release readiness, and incident remediation | repo-link bootstrap becomes more reusable when recurring task shapes already have prompt surfaces | add one prompt at a time under initiative mode and link it from the workspace-guidance README |
-| `FE-003` | `candidate` | add example scorecards for recurring ambiguous repo-link requests | rubric outcomes become easier to calibrate when common mixed-signal requests have comparison examples | create a small example pack or annex with scored request patterns |
+- `FE-001` added the workspace-guidance validation checklist in [../EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md](../EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md)
+- `FE-007` added the agent assessment loop in [../EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md](../EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md) and installed repo-local guidance under `.github/`
+- `FE-002` installed live task-shape prompt bundles for audit-remediation, release closeout, and migration bootstrap under `.github/prompts/`
+- `FE-003` added repo-link ambiguity scorecards in [../EXEC_CTRL_REPO_LINK_SCORECARDS.md](../EXEC_CTRL_REPO_LINK_SCORECARDS.md)
+- `FE-004` added generic self-hosting example packs for prompt-library evolution, template-library hardening, and governance-model migration under [../../examples/initiative-examples](../../examples/initiative-examples)
+- `FE-005` added self-hosting coherence-failure calibration in [../EXEC_CTRL_SELF_HOSTING_COHERENCE_FAILURE_CALIBRATION.md](../EXEC_CTRL_SELF_HOSTING_COHERENCE_FAILURE_CALIBRATION.md)
+- `FE-006` added method-repo refinement scorecards in [../EXEC_CTRL_METHOD_REPO_REFINEMENT_SCORECARDS.md](../EXEC_CTRL_METHOD_REPO_REFINEMENT_SCORECARDS.md)
+- `FE-008` added the lightweight test-ready review in [../EXEC_CTRL_METHOD_REPO_TEST_READY_REVIEW.md](../EXEC_CTRL_METHOD_REPO_TEST_READY_REVIEW.md)
 
-### 2. Self-hosting calibration
+No defined planning items remain.
 
-| ID | State | Enhancement | Why it matters | Suggested next slice |
-| --- | --- | --- | --- | --- |
-| `FE-004` | `candidate` | add more generic examples for prompt-library evolution, template-library hardening, and governance-model migrations | self-hosting is stronger when the repo demonstrates more than one method-evolution shape | add one bounded example pack at a time and keep the generic guide ahead of the examples |
-| `FE-005` | `candidate` | add example review cases for recurring self-hosting coherence failures | checklist outcomes become easier to interpret when reviewers can compare common failure patterns | add a compact calibration annex tied to the coherence checklist |
-| `FE-006` | `candidate` | add example scorecards for ambiguous method-repo refinements | method-evolution mode selection becomes easier to compare over time | add a scorecard appendix or example doc that pairs the rubric with self-hosting scenarios |
-
-### 3. Agent-assisted method evolution
-
-| ID | State | Enhancement | Why it matters | Suggested next slice |
-| --- | --- | --- | --- | --- |
-| `FE-007` | `near_term` | define an agent-assisted assessment loop for iterative `exec-ctrl` improvement | the repo is close to the point where agents can repeatedly inspect gaps, choose bounded refinements, and improve the method without inventing the workflow each time | add a guide or prompt that tells an agent how to inspect the planning area, choose one bounded slice, create control records, and close with explicit follow-on work |
-| `FE-008` | `later` | define a lightweight test-ready review for the method repo itself | repeated self-hosting cycles need a clear checkpoint for when the repo is ready for broader field testing | add a bounded review guide only after several real repo-link trials produce repeatable evaluation criteria |
+Future additions should be created only when repeated field use exposes a new recurring need that is not already covered by the current docs, prompts, examples, or calibration surfaces.
 
 ## Planning guidance for agents
 
@@ -59,4 +51,4 @@ An agent using this planning area should:
 
 The repo appears ready for real-world testing now.
 
-The most defensible next bounded refinement, if one is wanted before more field use, is `FE-001` because copied workspace-guidance placeholders are a practical failure mode during repo-link bootstrap.
+No defined backlog items remain. The next work, if any, should come from real field use rather than from this planning surface.

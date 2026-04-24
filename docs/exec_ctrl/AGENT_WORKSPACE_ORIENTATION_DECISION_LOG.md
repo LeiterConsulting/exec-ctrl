@@ -1,0 +1,9 @@
+# Agent Workspace Orientation Decision Log
+
+| ID | Date | Decision | Rationale | Consequence |
+| --- | --- | --- | --- | --- |
+| `D-001` | `2026-04-24` | govern the repo self-orientation work under initiative-mode exec-ctrl | this is a bounded self-hosting refinement rather than a whole-repository execution-model redesign | the repo uses its own discipline while improving the agent-facing operating surfaces |
+| `D-002` | `2026-04-24` | treat missing live repo-root `.github/` guidance as the primary gap to close first | an agent pointed at this workspace cannot rely on template files under `templates/` to act like installed project guidance | the refinement centers on repo-local guidance installation and orientation rather than on more generic method expansion first |
+| `D-003` | `2026-04-24` | install a minimal live guidance set under `.github/` instead of copying every template prompt bundle | the repo needed always-on orientation and a few high-value prompts, not a noisy mirror of the template pack | future agent sessions get a clear entry surface without unnecessary prompt clutter |
+| `D-004` | `2026-04-24` | add a generic assessment-loop guide and a repo-local next-refinement prompt in the same slice | the generic rule needed to be taught under `docs/` before the repo-local prompt operationalized it | the method now teaches and demonstrates how to continue bounded self-hosting refinement from workspace context |
+| `D-005` | `2026-04-24` | promote `FE-007` out of planning and advance `FE-002` as the next bounded candidate | the assessment loop is now implemented, so the planning area should reflect the completed promotion and name the next most useful slice | the backlog stays truthful and future sessions can choose the next refinement without rediscovering the finished work |

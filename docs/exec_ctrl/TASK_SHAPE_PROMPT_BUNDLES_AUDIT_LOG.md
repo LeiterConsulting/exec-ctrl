@@ -1,0 +1,7 @@
+# Task-Shape Prompt Bundles Audit Log
+
+| Date | Checkpoint | Evidence Reviewed | Verdict | Gaps | Next Action |
+| --- | --- | --- | --- | --- | --- |
+| `2026-04-24` | `Baseline audit` | `docs/planning/FUTURE_ENHANCEMENTS.md`, repo-local `.github/prompts/`, `templates/workspace-guidance/.github/prompts/`, active user direction | `pass_with_gaps` | the template pack already contains the next recurring task-shape prompts, but the live repo guidance does not yet expose them for agent discovery from workspace context | install the bounded prompt set and route the live guidance to it |
+| `2026-04-24` | `Prompt installation audit` | `.github/prompts/exec-ctrl-audit.prompt.md`, `.github/prompts/exec-ctrl-release-closeout.prompt.md`, `.github/prompts/exec-ctrl-migration-bootstrap.prompt.md`, `.github/copilot-instructions.md`, `docs/planning/FUTURE_ENHANCEMENTS.md` | `pass` | the live prompt set now covers the chosen recurring task shapes and the always-on guidance points agents to them explicitly | synchronize the proof artifacts and close the refinement |
+| `2026-04-24` | `Completion audit` | final prompt surfaces, updated planning doc, and synchronized self-governing records | `pass` | no must-pass gaps remain | close the refinement |

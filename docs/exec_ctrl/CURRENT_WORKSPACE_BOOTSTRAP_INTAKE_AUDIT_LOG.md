@@ -1,0 +1,6 @@
+# Current Workspace Bootstrap Intake Audit Log
+
+| Date | Checkpoint | Evidence Reviewed | Verdict | Gaps | Next Action |
+| --- | --- | --- | --- | --- | --- |
+| `2026-04-24` | `Baseline audit` | `README.md`, `docs/EXEC_CTRL_METHOD.md`, `docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md`, `docs/EXEC_CTRL_AGENT_PROMPT_COOKBOOK.md`, `.github/prompts/bootstrap-exec-ctrl.prompt.md`, active user scenario | `pass_with_gaps` | the repo teaches repo-link bootstrap well, but it does not yet state clearly that a prompt-only reference to the `exec-ctrl` repo means the current workspace is the target and the URL is the method source | update the generic intake docs and bootstrap prompt, then validate the clarified path |
+| `2026-04-24` | `Completion audit` | updated `README.md`, `docs/EXEC_CTRL_METHOD.md`, `docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md`, `docs/EXEC_CTRL_AGENT_PROMPT_COOKBOOK.md`, `.github/prompts/bootstrap-exec-ctrl.prompt.md`, markdown diagnostics | `pass` | no must-pass gaps remain in the documented intake path | close the bounded refinement |
