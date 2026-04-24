@@ -18,8 +18,14 @@ It can be applied in two ways:
 - a generic method guide in [docs/EXEC_CTRL_METHOD.md](docs/EXEC_CTRL_METHOD.md)
 - a bounded-work guide in [docs/EXEC_CTRL_INITIATIVE_MODE.md](docs/EXEC_CTRL_INITIATIVE_MODE.md)
 - an agent prompt cookbook in [docs/EXEC_CTRL_AGENT_PROMPT_COOKBOOK.md](docs/EXEC_CTRL_AGENT_PROMPT_COOKBOOK.md)
+- a repo-link bootstrap guide in [docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md](docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md)
+- a self-hosting and method-evolution guide in [docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md](docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md)
+- a self-hosting coherence checklist in [docs/EXEC_CTRL_SELF_HOSTING_COHERENCE_CHECKLIST.md](docs/EXEC_CTRL_SELF_HOSTING_COHERENCE_CHECKLIST.md)
+- a bounded-vs-whole-system scoring rubric in [docs/EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md](docs/EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md)
+- a non-operational planning area for future method enhancements in [docs/planning](docs/planning)
 - a starter template pack in [templates/project-pack](templates/project-pack)
 - a bounded-work starter pack in [templates/initiative-pack](templates/initiative-pack)
+- a workspace-guidance template pack in [templates/workspace-guidance](templates/workspace-guidance)
 - generic example initiative packs in [examples/initiative-examples](examples/initiative-examples)
 - numbered template docs for the authoritative exec-ctrl layer:
   - `13_EXEC_CTRL_OVERVIEW.md`
@@ -97,14 +103,45 @@ That prevents work from drifting into later features while earlier gates remain 
 
 For initiative-pack mode, the same discipline applies at the initiative level: work should not be declared closed until must-pass criteria are backed by evidence and documented in the control artifacts.
 
+## Repo-link bootstrap
+
+If the user brings a task idea plus a repository link and expects the agent to stand up exec-ctrl in the target repo, use [docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md](docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md).
+
+That guide covers:
+
+- mode selection from the request shape
+- what control docs to create first
+- how to add workspace guidance so later agent sessions stay aligned
+- concrete prompt examples and failure modes
+
+## Self-hosting and method evolution
+
+If the work is to improve `exec-ctrl` itself, or to improve another governance, template, prompt, or method repository using the same discipline, use [docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md](docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md).
+
+That guide covers:
+
+- when self-hosting should still default to initiative mode
+- how to treat docs, prompts, templates, and examples as governed product surfaces
+- how to update the generic method first and repo-local evidence second
+- how to close recursive method changes without hiding follow-on work
+
+Use [docs/EXEC_CTRL_SELF_HOSTING_COHERENCE_CHECKLIST.md](docs/EXEC_CTRL_SELF_HOSTING_COHERENCE_CHECKLIST.md) during validation when you need to check whether the changed docs, prompts, templates, examples, and proof artifacts still teach one coherent workflow.
+
+If the boundary between one bounded slice and a whole-system redesign is unclear, use [docs/EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md](docs/EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md) before choosing the control path.
+
+If you need to capture likely next improvements without making them look active, use the non-operational planning area in [docs/planning](docs/planning). That area is for candidate enhancements and roadmap shaping, while [docs/exec_ctrl](docs/exec_ctrl) remains the operational evidence area for active or completed bounded refinements.
+
 ## Quick start
 
-1. Choose the operating mode.
-2. For full-project control, copy the files from [templates/project-pack](templates/project-pack) into the target project's docs folder.
-3. Keep the numbering so the exec-ctrl layer sits after the original concept pack.
-4. Fill in the target product, page inventory, phase plan, tests, and live status for the project.
-5. For bounded initiative control, copy the files from [templates/initiative-pack](templates/initiative-pack) into a folder such as `docs/exec_ctrl/` in the target repository and rename them to match the initiative.
-6. During implementation, update the status, audit, and evidence docs whenever reality changes.
+1. If the starting point is a repo link plus a task, follow [docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md](docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md) first.
+2. If the starting point is to improve `exec-ctrl` itself or another method repository, follow [docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md](docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md) first.
+3. Choose the operating mode.
+4. For full-project control, copy the files from [templates/project-pack](templates/project-pack) into the target project's docs folder.
+5. Keep the numbering so the exec-ctrl layer sits after the original concept pack.
+6. Fill in the target product, page inventory, phase plan, tests, and live status for the project.
+7. For bounded initiative control, copy the files from [templates/initiative-pack](templates/initiative-pack) into a folder such as `docs/exec_ctrl/` in the target repository and rename them to match the initiative.
+8. If the repository lacks agent guidance, copy the files from [templates/workspace-guidance](templates/workspace-guidance) and customize them for the target repo.
+9. During implementation, update the status, audit, and evidence docs whenever reality changes.
 
 If you want a concrete starting point, use one of the generic example packs in [examples/initiative-examples](examples/initiative-examples) and adapt it to the target effort.
 
@@ -115,9 +152,12 @@ When a future user says "use the exec-ctrl repo to do the following work: ...", 
 1. inspect the request and decide whether it is whole-project or bounded-initiative work
 2. prefer initiative-pack mode unless the request clearly needs the full project pack
 3. activate the required docs before implementation starts
-4. convert the request into explicit objective, scope, deliverables, must-pass criteria, should-pass criteria, and non-goals
-5. keep the control docs current while implementation and validation happen
-6. close only when evidence exists and any deferrals are recorded explicitly
+4. install workspace guidance if the target repo does not already have an equivalent control surface
+5. convert the request into explicit objective, scope, deliverables, must-pass criteria, should-pass criteria, and non-goals
+6. keep the control docs current while implementation and validation happen
+7. close only when evidence exists and any deferrals are recorded explicitly
+
+When the target is the method repository itself, the same rule applies: activate the control docs first, then update the generic method surfaces before treating repo-local control records as the only evidence of change.
 
 ## Recommended repository convention
 

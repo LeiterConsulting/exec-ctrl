@@ -44,6 +44,8 @@ For bounded initiative mode, the minimum set is three docs:
 
 Optional supporting docs such as findings registers or remediation templates can be added when the initiative is audit-heavy.
 
+For repo-link workflows in an agentic IDE, a lightweight workspace-guidance layer is also recommended so the target repository knows how to keep using exec-ctrl after the initial activation.
+
 ## Operating modes
 
 Exec-ctrl supports two operating modes:
@@ -66,6 +68,55 @@ Typical triggers:
 - any request phrased as "use the exec-ctrl repo to do this work"
 
 If the request is bounded and does not require whole-project control, initiative mode should be the default.
+
+If the boundary between one bounded slice and a whole-system redesign is unclear, use [EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md](EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md) before choosing the control path.
+
+## Bootstrap layer for repo-link workflows
+
+When the user provides a repository link and expects the agent to activate exec-ctrl in the target workspace, add a lightweight guidance layer in that target repo.
+
+Recommended files:
+
+- `.github/copilot-instructions.md`
+- `.github/instructions/exec-ctrl-docs.instructions.md`
+- `.github/prompts/bootstrap-exec-ctrl.prompt.md`
+
+These files do not replace the control docs.
+
+They make the control model discoverable in later agent sessions and reduce drift between the initial bootstrap session and follow-on work.
+
+## Self-hosting and method evolution
+
+Exec-ctrl can govern its own improvement work.
+
+Use this pattern when the target repository is itself a:
+
+- method or governance repository
+- template library
+- prompt or instruction library
+- internal playbook or process-definition repository
+
+Default rule:
+
+- use initiative mode for bounded method changes
+- use project-pack mode only when redesigning the whole method system or whole repository execution model
+
+The key distinction is that the governed product surfaces are no longer only code or operator features.
+
+They may include:
+
+- method docs
+- templates
+- prompts and instructions
+- example packs
+- bootstrap guidance
+- repo-local control records that demonstrate the method in use
+
+When self-hosting, update the generic method surfaces first.
+
+Repo-local initiative records are important evidence, but they should not be the only place where the method change is taught.
+
+For the detailed workflow, use [EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md](EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md).
 
 ## Authority model
 
@@ -162,20 +213,31 @@ For initiative mode, the workflow is:
 5. validate against the initiative criteria with evidence
 6. close only when completion and deferrals are explicit
 
+For self-hosting method work, add this ordering inside initiative mode:
+
+1. audit the gap between what the method teaches and what the repo currently demonstrates
+2. update the generic method surfaces
+3. update reusable prompts, templates, and examples
+4. then update the repo-local control records so they reflect the finished change instead of substituting for it
+
 ## Agent activation rule
 
 When a future user says "use the exec-ctrl repo to do the following work", the agent should:
 
 1. decide whether the request needs full project mode or initiative mode
 2. default to initiative mode unless the request clearly demands whole-project governance
-3. create the control artifacts before substantive implementation
-4. keep those artifacts current while the work is executed and validated
+3. inspect the target repository before choosing the mode when a repo link is part of the request
+4. create the control artifacts before substantive implementation
+5. install workspace guidance if the target repo lacks equivalent agent instructions
+6. keep those artifacts current while the work is executed and validated
 
 ## Cookbook rule
 
 If the future agent needs examples of how a request should map to exec-ctrl behavior, it should consult:
 
 - [docs/EXEC_CTRL_AGENT_PROMPT_COOKBOOK.md](EXEC_CTRL_AGENT_PROMPT_COOKBOOK.md)
+- [docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md](EXEC_CTRL_REPO_LINK_BOOTSTRAP.md)
+- [docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md](EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md)
 - [examples/initiative-examples](../examples/initiative-examples)
 
 ## Practical guidance

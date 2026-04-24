@@ -1,0 +1,7 @@
+# Bounded-vs-Whole-System Scoring Rubric Enhancement Audit Log
+
+| Date | Checkpoint | Evidence Reviewed | Verdict | Gaps | Next Action |
+| --- | --- | --- | --- | --- | --- |
+| `2026-04-24` | `Baseline audit` | `docs/EXEC_CTRL_METHOD.md`, `docs/EXEC_CTRL_INITIATIVE_MODE.md`, `docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md`, `docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md`, workspace-guidance prompts and instructions, existing self-hosting records | `pass_with_gaps` | the repo identifies a future rubric need, but no reusable rubric surface or integrated scoring workflow exists yet | add the rubric doc, integrate it into ambiguous mode-selection surfaces, and validate the changed workflow |
+| `2026-04-24` | `Rubric integration audit` | `docs/EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md`, updated method docs, updated bootstrap and method-evolution prompts, updated workspace instructions | `pass` | the rubric is now integrated into the main ambiguous mode-selection surfaces and remains conservative in bounded cases | sync the self-governing control record to the completed state |
+| `2026-04-24` | `Completion audit` | final rubric doc, linked workflow surfaces, and synchronized self-governing records | `pass` | no must-pass gaps remain | close the refinement |

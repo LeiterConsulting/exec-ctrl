@@ -31,6 +31,12 @@ Examples:
 
 Use the optional files when the initiative is audit-heavy or will produce a remediation backlog.
 
+## Repo-link bootstrap pairing
+
+When initiative mode is activated from a repo link rather than by manual template copying alone, also copy the workspace-guidance files from `templates/workspace-guidance/.github/` into the target repository.
+
+That keeps later agent sessions aligned with the control docs after the initial bootstrap work is complete.
+
 ## Activation rule
 
 Before substantive implementation:

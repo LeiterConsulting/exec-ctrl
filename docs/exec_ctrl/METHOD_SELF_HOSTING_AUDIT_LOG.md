@@ -1,0 +1,7 @@
+# Method Self-Hosting Enhancement Audit Log
+
+| Date | Checkpoint | Evidence Reviewed | Verdict | Gaps | Next Action |
+| --- | --- | --- | --- | --- | --- |
+| `2026-04-24` | `Baseline audit` | `README.md`, `docs/EXEC_CTRL_METHOD.md`, `docs/EXEC_CTRL_INITIATIVE_MODE.md`, `docs/EXEC_CTRL_AGENT_PROMPT_COOKBOOK.md`, `docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md`, `templates/workspace-guidance/`, repo-local exec-ctrl records | `pass_with_gaps` | the repo demonstrates recursive use in its own records, but the generic method layer does not yet define self-hosting as a reusable pattern | add generic self-hosting guidance, a reusable activation surface, and entry-doc links |
+| `2026-04-24` | `Cross-surface coherence audit` | `docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md`, updated entry docs, `templates/workspace-guidance/.github/prompts/exec-ctrl-method-evolution.prompt.md`, `examples/initiative-examples/method-evolution/` | `pass` | the generic guide, prompt bundle, and example pack now express the same recursive workflow | sync the self-governing control record to the completed state |
+| `2026-04-24` | `Completion audit` | updated method docs, new self-hosting guide, new prompt bundle, new example pack, and synchronized self-governing records | `pass` | no must-pass gaps remain | close the enhancement |

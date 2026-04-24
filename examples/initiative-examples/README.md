@@ -26,6 +26,16 @@ Files included:
 - audit log
 - decision log
 
+### Method Evolution
+
+Use this pattern when the initiative is improving a method, template library, prompt pack, or governance repository using the same control system it defines.
+
+Files included:
+
+- control record
+- audit log
+- decision log
+
 ## How to use these examples
 
 1. choose the example closest to the requested initiative shape

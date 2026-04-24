@@ -14,6 +14,7 @@ Typical examples:
 - a UX or accessibility initiative
 - a release-readiness closeout
 - a capability, integration, or service addition that should be tracked as one initiative
+- a method, prompt, template, or governance-system refinement inside the repository that defines that method
 
 ## Default rule for future agent use
 
@@ -24,6 +25,8 @@ If a future user says:
 - "define the work and success criteria before implementation"
 
 the agent should default to initiative mode unless the request clearly requires a whole-project execution layer.
+
+If that boundary is still unclear after inspecting the repo and request, use [EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md](EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md) before escalating to a whole-system control path.
 
 ## Minimum artifact set
 
@@ -208,3 +211,7 @@ Initiative mode does not replace the full project-pack pattern.
 Use project-pack mode when the repository needs a whole-product execution layer.
 
 Use initiative mode when the work is one bounded effort inside an already-running project.
+
+Method and process refinement usually fit this rule as well.
+
+If the repository defines a method and the requested change is one bounded improvement to that method, govern it as an initiative and keep the generic method surfaces ahead of repo-local proof artifacts.
