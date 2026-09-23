@@ -71,8 +71,9 @@ The first [controlled test project](docs/exec_ctrl/V2_CONTROLLED_LAB_RESULTS.md)
 passed 50 lab checks, and hosted Windows/Linux CI passed. Independent blind
 task-plus-link trials across IDEs remain pending.
 
-The [second test pass](docs/exec_ctrl/V2_SECOND_PASS_TESTING.md) records regression
-coverage and the expanded controlled lab separately from those field trials.
+The [second test pass](docs/exec_ctrl/V2_SECOND_PASS_TESTING.md) passed 73 framework
+tests and 55 expanded lab checks, including 68 real HTTP checks. Windows/Linux CI
+passed; these controlled results remain separate from independent field trials.
 
 A URL cannot force an IDE to retrieve instructions. exec-ctrl also cannot enforce
 permissions, branch protection or organizational policy by itself. Use the host's
