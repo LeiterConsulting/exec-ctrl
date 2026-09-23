@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "framework_version": "2.0.0-preview.1",
+  "entry": "START_HERE.md",
+  "kinds": ["docs", "fix", "feature", "refactor", "audit", "incident", "migration", "release", "planning"],
+  "risks": ["low", "medium", "high", "unknown"],
+  "signals": ["auth", "data", "payments", "production", "destructive", "dependencies", "ci", "agent-tools", "exposure", "behavior", "failure", "api", "multi-service", "operations", "team", "issue-tracker", "enterprise", "regulated", "policy-unknown"],
+  "high_risk_signals": ["auth", "data", "payments", "production", "destructive"],
+  "base_gates": ["scope", "policy", "verification", "review"],
+  "modules": [
+    {"id": "policy", "path": "modules/policy.md", "always": true, "kinds": [], "signals": [], "risks": [], "gates": []},
+    {"id": "git", "path": "modules/git.md", "always": true, "kinds": [], "signals": [], "risks": [], "gates": ["git-review"]},
+    {"id": "quality", "path": "modules/quality.md", "always": false, "kinds": ["fix", "feature", "refactor", "audit", "incident", "migration", "release"], "signals": ["behavior"], "risks": ["high", "unknown"], "gates": ["behavior"]},
+    {"id": "security", "path": "modules/security.md", "always": false, "kinds": ["audit", "incident"], "signals": ["auth", "data", "payments", "dependencies", "ci", "agent-tools", "exposure"], "risks": ["high", "unknown"], "gates": ["security-review"]},
+    {"id": "troubleshooting", "path": "modules/troubleshooting.md", "always": false, "kinds": ["fix", "incident"], "signals": ["failure"], "risks": [], "gates": ["diagnosis"]},
+    {"id": "architecture", "path": "modules/architecture.md", "always": false, "kinds": ["feature", "refactor", "migration"], "signals": ["api", "multi-service"], "risks": [], "gates": ["design"]},
+    {"id": "documentation", "path": "modules/documentation.md", "always": false, "kinds": ["docs", "feature", "planning"], "signals": ["api", "operations"], "risks": [], "gates": ["documentation"]},
+    {"id": "delivery", "path": "modules/delivery.md", "always": false, "kinds": ["release", "migration"], "signals": ["production", "ci"], "risks": [], "gates": ["delivery-readiness"]},
+    {"id": "team", "path": "modules/team.md", "always": false, "kinds": [], "signals": ["team", "issue-tracker"], "risks": [], "gates": ["handoff"]},
+    {"id": "enterprise", "path": "modules/enterprise.md", "always": false, "kinds": [], "signals": ["enterprise", "regulated", "policy-unknown"], "risks": [], "gates": ["enterprise-policy"]}
+  ]
+}

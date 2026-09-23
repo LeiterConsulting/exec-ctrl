@@ -1,199 +1,75 @@
-# exec-ctrl
+# exec-ctrl v2
 
-`exec-ctrl` is a reusable execution-control pattern for turning product-definition docs into an authoritative implementation system.
+**Development discipline for agents, activated with a repository link.**
 
-It is intended for projects where:
-- the direction is mostly known
-- phases should be explicit
-- the next move should follow documented completion status
-- testing and evidence should decide whether a phase is actually done
-- the agent or team must keep the docs current while implementation evolves
+Give your agent the work and this repository:
 
-It can be applied in two ways:
-- as a full project execution layer on top of an existing concept pack
-- as a bounded initiative control pack for a specific slice of work inside an active repository
+> Fix the checkout retry bug. Use https://github.com/LeiterConsulting/exec-ctrl/tree/v2
 
-## What this repo contains
+The `v2` branch contains this preview. The default branch retains v1. Use the
+branch-specific link above when evaluating v2, or pin it to a reviewed commit.
 
-- a generic method guide in [docs/EXEC_CTRL_METHOD.md](docs/EXEC_CTRL_METHOD.md)
-- a bounded-work guide in [docs/EXEC_CTRL_INITIATIVE_MODE.md](docs/EXEC_CTRL_INITIATIVE_MODE.md)
-- an agent prompt cookbook in [docs/EXEC_CTRL_AGENT_PROMPT_COOKBOOK.md](docs/EXEC_CTRL_AGENT_PROMPT_COOKBOOK.md)
-- an agent assessment loop for self-hosted repo refinement in [docs/EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md](docs/EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md)
-- a repo-link bootstrap guide in [docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md](docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md)
-- repo-link scorecards in [docs/EXEC_CTRL_REPO_LINK_SCORECARDS.md](docs/EXEC_CTRL_REPO_LINK_SCORECARDS.md)
-- method-repo refinement scorecards in [docs/EXEC_CTRL_METHOD_REPO_REFINEMENT_SCORECARDS.md](docs/EXEC_CTRL_METHOD_REPO_REFINEMENT_SCORECARDS.md)
-- a workspace-guidance validation checklist in [docs/EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md](docs/EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md)
-- a self-hosting and method-evolution guide in [docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md](docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md)
-- a self-hosting coherence checklist in [docs/EXEC_CTRL_SELF_HOSTING_COHERENCE_CHECKLIST.md](docs/EXEC_CTRL_SELF_HOSTING_COHERENCE_CHECKLIST.md)
-- a coherence-failure calibration guide in [docs/EXEC_CTRL_SELF_HOSTING_COHERENCE_FAILURE_CALIBRATION.md](docs/EXEC_CTRL_SELF_HOSTING_COHERENCE_FAILURE_CALIBRATION.md)
-- a bounded-vs-whole-system scoring rubric in [docs/EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md](docs/EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md)
-- a lightweight test-ready review in [docs/EXEC_CTRL_METHOD_REPO_TEST_READY_REVIEW.md](docs/EXEC_CTRL_METHOD_REPO_TEST_READY_REVIEW.md)
-- a non-operational planning area for future method enhancements in [docs/planning](docs/planning)
-- a starter template pack in [templates/project-pack](templates/project-pack)
-- a bounded-work starter pack in [templates/initiative-pack](templates/initiative-pack)
-- a workspace-guidance template pack in [templates/workspace-guidance](templates/workspace-guidance)
-- live workspace guidance for this repository under `.github/`
-- generic example initiative packs in [examples/initiative-examples](examples/initiative-examples)
-- numbered template docs for the authoritative exec-ctrl layer:
-  - `13_EXEC_CTRL_OVERVIEW.md`
-  - `14_EXEC_CTRL_TARGET_PRODUCT.md`
-  - `15_EXEC_CTRL_PAGES_AND_FUNCTIONS.md`
-  - `16_EXEC_CTRL_PHASE_PLAN.md`
-  - `17_EXEC_CTRL_TEST_AND_SUCCESS.md`
-  - `18_EXEC_CTRL_STATUS.md`
+The agent reads the entry instructions, inspects your project, selects relevant
+controls, and carries them through implementation, verification and handoff.
+You do not need to pick modules, install a plugin, or create a document pack.
 
-## Intended usage
+## Agents: start here
 
-This repo supports both a full-project mode and a bounded-initiative mode.
+**Read [START_HERE.md](START_HERE.md) and follow its activation sequence.**
+Treat this repository as the method source and the user's workspace as the
+target, unless the request explicitly asks to improve exec-ctrl itself. Retrieve
+linked files from the same revision. If the host cannot fetch repository content,
+report that limit; do not claim the framework was loaded.
 
-Use full-project mode when the repository needs an authoritative execution layer for the whole product.
+## What changes in v2
 
-Use bounded-initiative mode when the user says something like:
+- **Proportionate control:** a small fix needs a short record; complex work gets
+  explicit dependencies, risk, owners and release gates.
+- **Selective guidance:** load relevant modules for policy, Git, security,
+  functional correctness, troubleshooting, architecture, documentation, delivery,
+  team systems and enterprise rules.
+- **Evidence before completion:** connect requirements to implementation and
+  verification; distinguish source inspection, tests, deployment and live results.
+- **Fits existing teams:** reuse their instructions, issues, reviews and CI.
+  Record policy sources and unresolved conflicts instead of inventing rules.
+- **Portable activation:** plain Markdown works with any agent that can retrieve
+  and follow it. Optional local adapters support future sessions.
+- **Checkable records:** an optional Python helper routes declared task facts,
+  adds enterprise gates and checks evidence-record structure without network access.
 
-- "use the exec-ctrl repo to do the following work"
-- "govern this refactor under exec-ctrl"
-- "run this audit/remediation effort under exec-ctrl"
-- "define the work, success criteria, and evidence model before implementation"
+```mermaid
+flowchart LR
+  A[Task + repo link] --> B[Inspect target and policy]
+  B --> C[Select controls by risk]
+  C --> D[Implement and verify]
+  D --> E[Review evidence and hand off]
+  E -->|new facts or failures| B
+```
 
-Typical ordering:
+## Explore
 
-1. product and architecture docs establish the concept
-2. exec-ctrl docs become the authoritative execution layer
-3. implementation work updates the status, phase, and evidence docs in the same cycle as code changes
+| Need | Entry |
+| --- | --- |
+| Use exec-ctrl now | [Activation contract](START_HERE.md) |
+| Understand the rules | [Operating model](docs/v2/OPERATING_MODEL.md) |
+| Configure an IDE | [Adapters and retrieval](docs/v2/ADAPTERS.md) |
+| Apply company policy | [Enterprise rules](modules/enterprise.md) |
+| Use optional local checks | [Tooling](docs/v2/TOOLING.md) |
+| See task walkthroughs | [Examples](examples/v2/README.md) |
+| Upgrade an existing adoption | [Migration](docs/v2/MIGRATION.md) |
+| Assess readiness and next work | [Review and roadmap](docs/v2/ROADMAP.md) |
+| Maintain the framework | [Contributing](CONTRIBUTING.md) |
 
-For bounded initiatives, the ordering is lighter:
+## Status
 
-1. translate the request into a scoped initiative objective
-2. activate a control record, audit log, and decision log
-3. define success criteria and non-goals before implementation
-4. execute and validate with evidence
-5. close the initiative with explicit completion and deferrals
+**2.0.0-preview.1** is the first v2 implementation. The Markdown workflow and
+offline helper are usable for evaluation. Cross-agent field acceptance and a
+stable v2 release remain open; see the [validation record](docs/exec_ctrl/V2_FOUNDATION_AUDIT_LOG.md).
 
-## Operating modes
+A URL cannot force an IDE to retrieve instructions. exec-ctrl also cannot enforce
+permissions, branch protection or organizational policy by itself. Use the host's
+controls and CI for enforcement; the framework makes the agent's obligations and
+evidence explicit.
 
-### Project-pack mode
-
-Use [templates/project-pack](templates/project-pack) when:
-
-- the repository needs a full execution layer
-- the work spans the whole product or delivery ladder
-- the project already has concept, architecture, or product-definition docs
-
-### Initiative-pack mode
-
-Use [templates/initiative-pack](templates/initiative-pack) when:
-
-- the work is a bounded slice inside an active codebase
-- the user is asking for one initiative, audit, refactor, remediation effort, or subsystem slice
-- the team needs explicit scope, success criteria, audit checkpoints, and decisions without rewriting the whole project pack
-- the agent needs a default governance pattern for "do this work under exec-ctrl"
-
-If the user request is bounded and does not require a whole-product execution layer, initiative-pack mode should be the default.
-
-## Shared status vocabulary
-
-Both operating modes should use the same core execution states unless a repository has a very strong reason not to:
-
-- `not_started`
-- `in_progress`
-- `blocked`
-- `complete`
-- `deferred`
-
-Phase names should carry the lifecycle nuance. Status words should stay compact and consistent.
-
-## Core rule
-
-The current phase is the earliest phase that is not `complete`.
-
-That prevents work from drifting into later features while earlier gates remain unresolved.
-
-For initiative-pack mode, the same discipline applies at the initiative level: work should not be declared closed until must-pass criteria are backed by evidence and documented in the control artifacts.
-
-## Repo-link bootstrap
-
-If the user brings a task idea plus a repository link and expects the agent to stand up exec-ctrl in the target repo, use [docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md](docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md).
-
-If the user mentions the `exec-ctrl` repo itself only as a method reference, such as `Use the exec-ctrl process: https://github.com/LeiterConsulting/exec-ctrl`, and does not provide another target repo link, treat the current workspace as the target repo and the `exec-ctrl` URL as the method source.
-
-That guide now includes a quick routing table for current-workspace bootstrap, external-repo bootstrap, and improving `exec-ctrl` itself, plus a copyable first-session prompt for a brand-new or lightly populated workspace.
-
-That guide covers:
-
-- mode selection from the request shape
-- what control docs to create first
-- how to add workspace guidance so later agent sessions stay aligned
-- concrete prompt examples and failure modes
-
-## Self-hosting and method evolution
-
-If the work is to improve `exec-ctrl` itself, or to improve another governance, template, prompt, or method repository using the same discipline, use [docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md](docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md).
-
-That guide covers:
-
-- when self-hosting should still default to initiative mode
-- how to treat docs, prompts, templates, and examples as governed product surfaces
-- how to update the generic method first and repo-local evidence second
-- how to close recursive method changes without hiding follow-on work
-
-Use [docs/EXEC_CTRL_SELF_HOSTING_COHERENCE_CHECKLIST.md](docs/EXEC_CTRL_SELF_HOSTING_COHERENCE_CHECKLIST.md) during validation when you need to check whether the changed docs, prompts, templates, examples, and proof artifacts still teach one coherent workflow.
-
-If the user asks to continue refining this repository from workspace context, use [docs/EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md](docs/EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md) and the installed guidance under `.github/` first.
-
-If a repo-link or self-hosting request is ambiguous, use the scorecards in [docs/EXEC_CTRL_REPO_LINK_SCORECARDS.md](docs/EXEC_CTRL_REPO_LINK_SCORECARDS.md) and [docs/EXEC_CTRL_METHOD_REPO_REFINEMENT_SCORECARDS.md](docs/EXEC_CTRL_METHOD_REPO_REFINEMENT_SCORECARDS.md) to calibrate the live rubric pass.
-
-If the boundary between one bounded slice and a whole-system redesign is unclear, use [docs/EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md](docs/EXEC_CTRL_BOUNDED_VS_WHOLE_SYSTEM_SCORING_RUBRIC.md) before choosing the control path.
-
-If you need to capture likely next improvements without making them look active, use the non-operational planning area in [docs/planning](docs/planning). That area is for candidate enhancements and roadmap shaping, while [docs/exec_ctrl](docs/exec_ctrl) remains the operational evidence area for active or completed bounded refinements.
-
-When the defined planning backlog is exhausted and you need an explicit broader-readiness checkpoint, use [docs/EXEC_CTRL_METHOD_REPO_TEST_READY_REVIEW.md](docs/EXEC_CTRL_METHOD_REPO_TEST_READY_REVIEW.md).
-
-## Quick start
-
-1. If the starting point is a repo link plus a task, follow [docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md](docs/EXEC_CTRL_REPO_LINK_BOOTSTRAP.md) first.
-  If the only repo link is the `exec-ctrl` repo itself, use the same bootstrap guide but treat the current workspace as the target.
-2. If the starting point is to improve `exec-ctrl` itself or another method repository, follow [docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md](docs/EXEC_CTRL_SELF_HOSTING_AND_METHOD_EVOLUTION.md) first.
-3. If the user asks to continue refining this repository itself, use [docs/EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md](docs/EXEC_CTRL_AGENT_ASSESSMENT_LOOP.md) and the repo-local `.github/` prompts first.
-4. Choose the operating mode.
-5. For full-project control, copy the files from [templates/project-pack](templates/project-pack) into the target project's docs folder.
-6. Keep the numbering so the exec-ctrl layer sits after the original concept pack.
-7. Fill in the target product, page inventory, phase plan, tests, and live status for the project.
-8. For bounded initiative control, copy the files from [templates/initiative-pack](templates/initiative-pack) into a folder such as `docs/exec_ctrl/` in the target repository and rename them to match the initiative.
-9. If the repository lacks agent guidance, copy the files from [templates/workspace-guidance](templates/workspace-guidance), customize them for the target repo, and run [docs/EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md](docs/EXEC_CTRL_WORKSPACE_GUIDANCE_VALIDATION_CHECKLIST.md).
-10. During implementation, update the status, audit, and evidence docs whenever reality changes.
-
-If you want a concrete starting point, use one of the generic example packs in [examples/initiative-examples](examples/initiative-examples) and adapt it to the target effort.
-
-## Agent invocation pattern
-
-When a future user says "use the exec-ctrl repo to do the following work: ...", the default agent behavior should be:
-
-1. inspect the request and decide whether it is whole-project or bounded-initiative work
-2. prefer initiative-pack mode unless the request clearly needs the full project pack
-3. activate the required docs before implementation starts
-4. install workspace guidance if the target repo does not already have an equivalent control surface
-5. convert the request into explicit objective, scope, deliverables, must-pass criteria, should-pass criteria, and non-goals
-6. keep the control docs current while implementation and validation happen
-7. close only when evidence exists and any deferrals are recorded explicitly
-
-When the target is the method repository itself, the same rule applies: activate the control docs first, then update the generic method surfaces before treating repo-local control records as the only evidence of change.
-
-## Recommended repository convention
-
-Use the exec-ctrl files as the authoritative execution surface.
-
-When docs disagree, the usual order should be:
-
-1. active user direction
-2. `18_EXEC_CTRL_STATUS.md`
-3. `16_EXEC_CTRL_PHASE_PLAN.md`
-4. `17_EXEC_CTRL_TEST_AND_SUCCESS.md`
-5. `14_EXEC_CTRL_TARGET_PRODUCT.md`
-6. `15_EXEC_CTRL_PAGES_AND_FUNCTIONS.md`
-7. earlier concept docs
-
-## Extracted pattern scope
-
-This repo is the generic pattern only.
-
-It is not tied to one app, one framework, or one runtime. Project-specific examples belong in the target project or in a future examples directory if needed.
+Existing v1 users can keep their workflows. The [v1 guide](V1_README.md), templates
+and historical records remain available as versioned reference.

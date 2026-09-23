@@ -1,3 +1,6 @@
+> **v1 reference.** For new work use the [v2 activation contract](../START_HERE.md).
+> Apply the workflow below only when explicitly maintaining a v1 adoption.
+
 # Exec-Ctrl Method-Repo Refinement Scorecards
 
 ## Purpose

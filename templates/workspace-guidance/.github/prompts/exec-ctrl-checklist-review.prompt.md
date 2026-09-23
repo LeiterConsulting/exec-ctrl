@@ -5,6 +5,9 @@ argument-hint: "Changed surfaces and validation context"
 agent: "agent"
 ---
 
+> **v1 reference.** For new work use the [v2 activation contract](../../../../START_HERE.md).
+> Apply the workflow below only when explicitly maintaining a v1 adoption.
+
 Review the current self-hosting or method-evolution change with the self-hosting coherence checklist.
 
 Steps:

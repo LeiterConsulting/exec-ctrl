@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "framework_version": "2.0.0-preview.1",
+  "id": "synthetic-docs-example",
+  "objective": "Illustrate a reviewed spelling correction; no real task evidence",
+  "subject": "synthetic-example-snapshot-1",
+  "state": "complete",
+  "facts": {
+    "kind": "docs",
+    "risk": "low",
+    "signals": [],
+    "whole_project": false
+  },
+  "rulesets": [],
+  "gates": [
+    {
+      "id": "scope",
+      "result": "pass",
+      "evidence": [
+        "synthetic-review"
+      ],
+      "reason": ""
+    },
+    {
+      "id": "policy",
+      "result": "pass",
+      "evidence": [
+        "synthetic-review"
+      ],
+      "reason": ""
+    },
+    {
+      "id": "verification",
+      "result": "pass",
+      "evidence": [
+        "synthetic-review"
+      ],
+      "reason": ""
+    },
+    {
+      "id": "review",
+      "result": "pass",
+      "evidence": [
+        "synthetic-review"
+      ],
+      "reason": ""
+    },
+    {
+      "id": "git-review",
+      "result": "pass",
+      "evidence": [
+        "synthetic-review"
+      ],
+      "reason": ""
+    },
+    {
+      "id": "documentation",
+      "result": "pass",
+      "evidence": [
+        "synthetic-review"
+      ],
+      "reason": ""
+    }
+  ],
+  "evidence": [
+    {
+      "id": "synthetic-review",
+      "kind": "inspection",
+      "subject": "synthetic-example-snapshot-1",
+      "result": "pass",
+      "reference": "example://synthetic-review",
+      "summary": "Fictional example: scope, local instructions, correction, diff and links reviewed. Not actual validation evidence."
+    }
+  ]
+}

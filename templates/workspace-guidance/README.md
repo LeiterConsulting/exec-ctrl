@@ -1,3 +1,6 @@
+> **v1 reference.** For new work use the [v2 activation contract](../../START_HERE.md).
+> Apply the workflow below only when explicitly maintaining a v1 adoption.
+
 # Workspace Guidance Template Pack
 
 This template pack adds the agent-facing workspace guidance layer that pairs with exec-ctrl control docs.

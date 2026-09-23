@@ -1,3 +1,6 @@
+> **v1 reference.** For new work use the [v2 activation contract](../../START_HERE.md).
+> Apply the workflow below only when explicitly maintaining a v1 adoption.
+
 # <Initiative Name> Findings Register
 
 Use this file for audit-heavy initiatives that need a durable issue ledger before remediation.

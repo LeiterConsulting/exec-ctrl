@@ -52,3 +52,10 @@ An agent using this planning area should:
 The repo appears ready for real-world testing now.
 
 No defined backlog items remain. The next work, if any, should come from real field use rather than from this planning surface.
+## v2 evolution
+
+The 2026-09-23 user request starts a new product evolution beyond the completed v1
+backlog. The [v2 roadmap](../v2/ROADMAP.md) now holds candidate follow-on work;
+[the foundation record](../exec_ctrl/V2_FOUNDATION_EXEC_CTRL.md) tracks active
+implementation and validation. Earlier planning/closeout entries remain historical
+and do not imply that v2 is complete.

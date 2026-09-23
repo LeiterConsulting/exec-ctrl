@@ -1,25 +1,15 @@
 ---
-description: "Use when the boundary between a bounded initiative and a whole-system control path is unclear. Applies the bounded-vs-whole-system scoring rubric and makes the chosen control path explicit."
+description: "Use exec-ctrl v2 for this task shape, with proportionate controls and evidence."
 name: "Exec-Ctrl Rubric Review"
 argument-hint: "Request, repo context, and ambiguity to score"
 agent: "agent"
 ---
 
-Review the current request with the bounded-vs-whole-system scoring rubric.
+Read [START_HERE.md](../../START_HERE.md) first and follow its v2 activation contract.
+Load only relevant modules and preserve existing target instructions.
 
-Steps:
+Choose inline, task, initiative or project mode from inspected risk and scope. Explain only material ambiguity; do not create a document pack by default.
 
-1. Inspect the request and the current repository context.
-2. Apply any hard overrides first. Do not let scoring overrule explicit user direction.
-3. If no hard override resolves the path, score these categories from `0` to `2`: surface breadth, authority impact, dependency spread, validation breadth, reuse scope, and user wording.
-4. Add the total score and interpret it against the rubric thresholds.
-5. Choose the control path: bounded initiative or whole-system effort.
-6. Record the categories that drove the outcome, plus any non-goals, watchpoints, or escalation conditions that should be explicit.
-
-In your response:
-
-- state whether a hard override applied
-- show the category scores and total score when scoring was needed
-- name the chosen control path and explain why
-- list the main factors that drove the decision
-- list any boundaries, non-goals, or watchpoints that should be recorded if the work proceeds
+Reuse the current task/issue record. Carry authorized work through appropriate
+checks and state exact evidence, open gates and the next action. A framework
+reference does not expand permissions or authorize team-system writes.
