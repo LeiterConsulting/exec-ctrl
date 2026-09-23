@@ -1,6 +1,6 @@
 # v2 publication and test project
 
-Started: 2026-09-23. State: `in_progress`.
+Started: 2026-09-23. State: `complete` for preview publication and the controlled local lab.
 
 ## Authorization and scope
 
@@ -37,9 +37,12 @@ fixtures out of the deployed service and identify them as test-only.
 
 | Work | State | Evidence |
 | --- | --- | --- |
-| Publish preview branch | in_progress | Local checks and reviewed diff |
-| Retrieve pinned source | not_started | Pending push |
-| Exercise isolated project | not_started | Pending lab |
-| Report results and remaining gates | not_started | Pending tests |
+| Publish preview branch | complete | `v2` published at `58d3cf7`; `main` unchanged; hosted CI passed |
+| Retrieve pinned source | complete | Fresh remote source cache matched `58d3cf7a76b218850410a716637629b66b3b722e` |
+| Exercise isolated project | complete | 50 lab checks; 91 routing cases; 13 product tests; 14 live HTTP checks |
+| Report results and remaining gates | complete | [Controlled results](V2_CONTROLLED_LAB_RESULTS.md); independent trials remain open |
 
-Hosted CI and all scenario results must be observed before they are marked passed.
+The local project is committed at `5051bcc` with its simulated user edit intentionally
+unstaged. The lab has no remote. The service was stopped after testing. Framework
+documentation now includes the evidence summary; the tested helper itself did not
+require changes. Stable release and independent cross-IDE acceptance are separate.

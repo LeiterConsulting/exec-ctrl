@@ -1,6 +1,9 @@
 # Cross-agent field trials
 
-Status: not run. This is a test protocol, not acceptance evidence.
+Status: independent blind cross-agent trials not run. One
+[controlled local lab](../exec_ctrl/V2_CONTROLLED_LAB_RESULTS.md) has completed in
+the authoring task. This file is the independent-trial protocol, not a claim that
+the scenarios below passed across IDEs.
 
 For each host, use a disposable target repository with realistic instructions,
 code and tests. Record host/version/settings, date, method commit, target baseline,

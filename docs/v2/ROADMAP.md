@@ -27,6 +27,10 @@ links, transparent evidence limits. No provider is called field-validated yet.
 
 ## Next: field acceptance
 
+The [first controlled local lab](../exec_ctrl/V2_CONTROLLED_LAB_RESULTS.md) and
+hosted Windows/Linux CI passed after publishing `v2`. Independent blind adoption
+trials remain the next gate; the controlled run does not substitute for them.
+
 Run the [trial protocol](FIELD_TRIALS.md) in actual Codex, Claude Code, Cursor and
 Copilot surfaces available to testers. Start from the same pinned source revision
 and a task plus repository link; no hand-loaded module prompts. Include small fixes,

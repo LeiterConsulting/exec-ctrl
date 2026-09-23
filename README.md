@@ -66,6 +66,10 @@ flowchart LR
 offline helper are usable for evaluation. Cross-agent field acceptance and a
 stable v2 release remain open; see the [validation record](docs/exec_ctrl/V2_FOUNDATION_AUDIT_LOG.md).
 
+The first [controlled test project](docs/exec_ctrl/V2_CONTROLLED_LAB_RESULTS.md)
+passed 50 lab checks, and hosted Windows/Linux CI passed. Independent blind
+task-plus-link trials across IDEs remain pending.
+
 A URL cannot force an IDE to retrieve instructions. exec-ctrl also cannot enforce
 permissions, branch protection or organizational policy by itself. Use the host's
 controls and CI for enforcement; the framework makes the agent's obligations and

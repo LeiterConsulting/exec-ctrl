@@ -19,10 +19,10 @@ preview; broad IDE field acceptance is a later release gate.
 | Review and define | complete | Baseline reviewed; scope and criteria below |
 | Build foundation | complete | Entry, ten modules, templates, router and validator |
 | Validate foundation | complete | 50 tests, 223 local links, examples and coherence review |
-| Cross-agent field trials | not_started | Recorded trials from supported tools |
+| Cross-agent field trials | in_progress | Controlled author-session lab complete; independent blind trials pending |
 | Release v2 | not_started | Trial gates satisfied, release identity and publication |
 
-Current phase: Cross-agent field trials (not started). The first increment ends
+Current phase: Cross-agent field trials (controlled lab only so far). The first increment ends
 after foundation validation; it does not complete the entire v2 release.
 
 ## Must-pass criteria for the foundation

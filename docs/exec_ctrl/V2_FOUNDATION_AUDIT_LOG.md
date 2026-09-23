@@ -51,7 +51,9 @@ SHA-256 of the tested local files (not a release artifact or whole-tree digest):
 
 ## Outstanding acceptance
 
-Hosted CI is configured for Windows/Linux and Python 3.10/3.13 but has not run.
+At the original foundation checkpoint, hosted CI was configured for Windows/Linux
+and Python 3.10/3.13 but had not run. Subsequent publication, successful hosted CI
+and controlled local trials are recorded in [the lab results](V2_CONTROLLED_LAB_RESULTS.md).
 The official [checkout](https://github.com/actions/checkout) and
 [setup-python](https://github.com/actions/setup-python) actions are pinned to v7
 commit hashes resolved from their official remotes on 2026-09-23; credentials are
@@ -60,4 +62,5 @@ not persisted and the workflow has read-only repository permissions.
 Vendor documentation research is design evidence, not proof that agents in each
 IDE follow the workflow. Cross-agent trials, hosted CI, real organization-policy
 acceptance, connector implementations and stable release remain open as recorded
-in the roadmap. No commit, push, external team-system write or release was made.
+in the roadmap. No commit, push, external team-system write or release was made
+at that original checkpoint; later preview publication is tracked separately.
