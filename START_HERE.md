@@ -1,6 +1,6 @@
 # exec-ctrl: agent activation contract
 
-Version: 2.0.0-preview.1. This is the v2 entry point. Use plain Markdown; no
+Version: 2.0.0-preview.2. This is the v2 entry point. Use plain Markdown; no
 installation, command, account or plugin is required for the workflow.
 
 ## 1. Establish target, intent and access

@@ -21,3 +21,12 @@ need to rename their six-file project pack or three-file initiative pack.
 The preserved [v1 guide](../../V1_README.md), legacy manuals, template packs and
 examples are labeled reference material. Old saved prompts must explicitly select
 v1 to use its workflow; otherwise follow v2 and retain only relevant task intent.
+
+## Between v2 previews
+
+Pin the helper used to validate historical records. Machine records declare an
+exact framework version; a preview.1 record is not silently accepted by preview.2.
+For ongoing work, review the new controls, create an updated record with the current
+version, reroute its facts/policies and revalidate the evidence. Keep the original
+record and evidence intact. Preview.2 makes policy-file ordering irrelevant without
+weakening content hashes or allowing recorded policies to be omitted.

@@ -4,6 +4,9 @@ The agent can use the whole Markdown workflow without Python. For repeatable
 local assistance, run the reviewed helper from an exec-ctrl checkout with Python
 3.10+; it uses only the standard library. It reads explicitly supplied files,
 prints JSON and never runs commands from records, writes the target or uses network.
+JSON inputs must be regular files of at most 2 MiB, encoded as UTF-8 (an optional
+BOM is accepted). Duplicate keys, non-finite numbers including exponent overflow,
+malformed JSON and unsupported fields are rejected. Input errors produce exit 2.
 
 ```sh
 python tools/exec_ctrl.py route --kind fix --risk low
@@ -39,6 +42,9 @@ Each explicitly supplied ruleset has schema version, ID, source, revision, owner
 required module IDs and gates (`id`, `description`, `source`, `owner`). All its
 gates apply to the invocation; there are no hidden path predicates. Select applicable
 rulesets after policy inspection. Multiple files compose additively.
+Their command-line order does not change record validity; each ruleset must still
+have a unique ID and unchanged identity/content. Array order within an individual
+ruleset is part of its content hash.
 
 Duplicate IDs, unknown fields/modules and gate collisions are errors. Rulesets
 cannot lower risk or remove gates. Supplying a ruleset also loads enterprise
@@ -77,4 +83,9 @@ This is a structural checker, not a security scanner, policy engine or proof of
 completion. It cannot detect omitted risk facts, undisclosed policies, fabricated
 reports or a stale snapshot given a new label. Review those claims separately.
 It does not fetch evidence references. `validate` checks catalog/entry coherence
-and local Markdown file destinations; it does not check external URLs or anchors.
+and local Markdown file destinations. Supported link syntax includes inline links
+and images, titles, angle destinations, balanced/escaped parentheses, and full,
+collapsed or shortcut references. Fenced code, inline code and HTML comments are
+ignored. First reference definitions win; unused definitions are not checked.
+This is not a full CommonMark renderer: HTML links, indented code, block-container
+syntax, external URLs and anchors are outside its validation scope.

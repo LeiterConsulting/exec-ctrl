@@ -27,6 +27,11 @@ links, transparent evidence limits. No provider is called field-validated yet.
 
 ## Next: field acceptance
 
+[Preview 2 testing](../exec_ctrl/V2_SECOND_PASS_TESTING.md) adds adversarial helper
+regressions and concurrent/failed-operation lab coverage. It fixes policy argument
+ordering, expands supported local Markdown links and bounds JSON inputs. These
+are controlled checks; the cross-agent acceptance gate below remains open.
+
 The [first controlled local lab](../exec_ctrl/V2_CONTROLLED_LAB_RESULTS.md) and
 hosted Windows/Linux CI passed after publishing `v2`. Independent blind adoption
 trials remain the next gate; the controlled run does not substitute for them.

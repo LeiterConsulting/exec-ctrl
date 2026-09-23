@@ -3,13 +3,16 @@
 
 import argparse
 import hashlib
+import html
 import json
+import math
 import re
 import sys
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
+MAX_JSON_BYTES = 2 * 1024 * 1024
 STATES = {"not_started", "in_progress", "blocked", "complete", "deferred"}
 RESULTS = {"pass", "fail", "blocked", "not_run", "not_applicable"}
 EVIDENCE_KINDS = {"inspection", "test", "build", "deployment", "live", "review"}
@@ -68,8 +71,18 @@ def read_json(path):
     def no_constant(value):
         raise Invalid("non-finite JSON number")
 
-    return json.loads(Path(path).read_text(encoding="utf-8-sig"),
-                      object_pairs_hook=no_duplicates, parse_constant=no_constant)
+    def finite_float(value):
+        number = float(value)
+        require(math.isfinite(number), "non-finite JSON number")
+        return number
+
+    source = Path(path)
+    require(source.is_file(), "JSON input must be a regular file")
+    with source.open("rb") as stream:
+        payload = stream.read(MAX_JSON_BYTES + 1)
+    require(len(payload) <= MAX_JSON_BYTES, "JSON input exceeds 2 MiB limit")
+    return json.loads(payload.decode("utf-8-sig"), object_pairs_hook=no_duplicates,
+                      parse_constant=no_constant, parse_float=finite_float)
 
 
 def local_file(root, name):
@@ -197,7 +210,9 @@ def check_record(record, catalog, rules=()):
         nonempty(record[key], key)
     choice(record["state"], STATES, "state")
     plan = route(record["facts"], catalog, rules)
-    require(record["rulesets"] == plan["rulesets"], "record rulesets do not match supplied ruleset identities/revisions/content")
+    unique_objects(record["rulesets"], "record rulesets")
+    require({r["id"]: r for r in record["rulesets"]} == {r["id"]: r for r in plan["rulesets"]},
+            "record rulesets do not match supplied ruleset identities/revisions/content")
     unique_objects(record["evidence"], "evidence")
     evidence = {}
     for item in record["evidence"]:
@@ -233,17 +248,201 @@ def check_record(record, catalog, rules=()):
             "limits": "Structure and declared subject consistency only; evidence content, policy authority and actual risk require review."}
 
 
+def markdown_text(value):
+    """Decode Markdown punctuation escapes and HTML entities in destinations."""
+    return html.unescape(re.sub(r"\\([!\"#$%&'()*+,\-./:;<=>?@\[\]\\^_`{|}~])", r"\1", value))
+
+
+def prose_only(body):
+    """Mask fenced code, inline code and comments while preserving line positions."""
+    def blank(value):
+        return re.sub(r"[^\n]", " ", value)
+
+    lines = []
+    fence = None
+    for line in body.splitlines(keepends=True):
+        marker = re.match(r"^ {0,3}(`{3,}|~{3,})(.*)$", line.rstrip("\r\n"))
+        if fence:
+            lines.append(blank(line))
+            if marker and marker[1][0] == fence[0] and len(marker[1]) >= len(fence) and not marker[2].strip():
+                fence = None
+        elif marker and not (marker[1][0] == "`" and "`" in marker[2]):
+            fence = marker[1]
+            lines.append(blank(line))
+        else:
+            lines.append(line)
+    body = re.sub(r"<!--.*?(?:-->|\Z)", lambda m: blank(m[0]), "".join(lines), flags=re.S)
+    parts = []
+    start = 0
+    cursor = 0
+    while cursor < len(body):
+        if body[cursor] == "\\":
+            cursor += 2
+            continue
+        if body[cursor] != "`":
+            cursor += 1
+            continue
+        end = cursor
+        while end < len(body) and body[end] == "`":
+            end += 1
+        close = re.search(r"(?<!`)" + re.escape(body[cursor:end]) + r"(?!`)", body[end:])
+        if close:
+            stop = end + close.end()
+            parts.extend((body[start:cursor], blank(body[cursor:stop])))
+            start = cursor = stop
+        else:
+            cursor = end
+    return "".join(parts) + body[start:]
+
+
+def markdown_destination(body, start):
+    """Return a destination and its end, or None for malformed syntax."""
+    cursor = start
+    angle = body[start:start + 1] == "<"
+    if angle:
+        cursor += 1
+        start = cursor
+    depth = 0
+    while cursor < len(body):
+        char = body[cursor]
+        if char == "\\" and cursor + 1 < len(body):
+            cursor += 2
+            continue
+        if angle:
+            if char == ">":
+                return body[start:cursor], cursor + 1
+            if char in "\n<":
+                return None
+        else:
+            if char.isspace():
+                break
+            if char == "(":
+                depth += 1
+            elif char == ")":
+                if not depth:
+                    break
+                depth -= 1
+        cursor += 1
+    if angle or depth:
+        return None
+    return body[start:cursor], cursor
+
+
+def markdown_tail(body, cursor):
+    """Skip whitespace and an optional quoted or parenthesized link title."""
+    start = cursor
+    while cursor < len(body) and body[cursor].isspace():
+        cursor += 1
+    if cursor > start and body[cursor:cursor + 1] in {'"', "'", "("}:
+        closing = ")" if body[cursor] == "(" else body[cursor]
+        cursor += 1
+        while cursor < len(body):
+            if body[cursor] == "\\":
+                cursor += 2
+            elif body[cursor] == closing:
+                cursor += 1
+                while cursor < len(body) and body[cursor].isspace():
+                    cursor += 1
+                return cursor
+            else:
+                cursor += 1
+        return None
+    return cursor
+
+
+def bracket_end(body, start):
+    depth = 1
+    cursor = start + 1
+    while cursor < len(body):
+        if body[cursor] == "\\":
+            cursor += 2
+            continue
+        if body[cursor] == "[":
+            depth += 1
+        elif body[cursor] == "]":
+            depth -= 1
+            if not depth:
+                return cursor
+        cursor += 1
+    return None
+
+
+def markdown_destinations(body):
+    """Extract supported inline/image and full/collapsed/shortcut reference links.
+
+    This is a repository link checker, not a full CommonMark renderer. HTML links,
+    indented code and block-container parsing are outside its supported syntax.
+    """
+    body = prose_only(body)
+    references = {}
+
+    def label(value):
+        return " ".join(markdown_text(value).split()).casefold()
+
+    def definition(match):
+        parsed = markdown_destination(match[2], 0)
+        if parsed:
+            target, end = parsed
+            tail = markdown_tail(match[2], end)
+            if target and tail == len(match[2]):
+                references.setdefault(label(match[1]), target)
+                return "\n" * match[0].count("\n")
+        return match[0]
+
+    body = re.sub(r"^ {0,3}\[([^\]\n]+)\]:[ \t]*(?:\n[ \t]*)?([^\n]+)$", definition, body, flags=re.M)
+
+    def scan(text):
+        cursor = 0
+        while cursor < len(text):
+            if text[cursor] == "\\":
+                cursor += 2
+                continue
+            if text[cursor] != "[":
+                cursor += 1
+                continue
+            end = bracket_end(text, cursor)
+            if end is None:
+                cursor += 1
+                continue
+            caption = text[cursor + 1:end]
+            stop = end + 1
+            target = None
+            if text[stop:stop + 1] == "(":
+                start = stop + 1
+                while start < len(text) and text[start].isspace():
+                    start += 1
+                parsed = markdown_destination(text, start)
+                if parsed:
+                    candidate, pos = parsed
+                    tail = markdown_tail(text, pos)
+                    if tail is not None and text[tail:tail + 1] == ")":
+                        target, stop = candidate, tail + 1
+            elif text[stop:stop + 1] == "[":
+                ref_end = bracket_end(text, stop)
+                if ref_end is not None:
+                    key = text[stop + 1:ref_end] or caption
+                    target = references.get(label(key))
+                    stop = ref_end + 1
+            else:
+                target = references.get(label(caption))
+            if target is not None:
+                yield markdown_text(target)
+            # Images inside a linked label have their own destinations.
+            if "[" in caption:
+                yield from scan(caption)
+            cursor = stop
+
+    yield from scan(body)
+
+
 def check_links(root):
-    """Check local Markdown destinations, excluding code blocks and external URLs."""
+    """Check supported local Markdown destinations, excluding external URLs."""
     checked = 0
     for path in root.rglob("*.md"):
         if any(part in {".git", "__pycache__", ".venv"} for part in path.relative_to(root).parts):
             continue
         require(path.resolve().is_relative_to(root.resolve()), "Markdown source escapes repository: " + str(path.relative_to(root)))
-        body = re.sub(r"```.*?```|~~~.*?~~~", "", path.read_text(encoding="utf-8-sig"), flags=re.S)
-        for match in re.finditer(r"\[[^\]\n]+\]\(([^)\n]+)\)", body):
-            target = match.group(1).strip().strip("<>")
-            # This repository uses inline links without optional titles.
+        for target in markdown_destinations(path.read_text(encoding="utf-8-sig")):
             url = urlsplit(target)
             if url.scheme or url.netloc or not url.path:
                 continue
