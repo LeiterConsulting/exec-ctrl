@@ -99,8 +99,16 @@ missing or renamed selected files, tampered metadata or a different record subje
 produce exit 2. Keep old manifests/reports historical and collect new evidence.
 
 Snapshots exclude unlisted files, permissions, runtime/tool versions and environment
-state. Reads are per file, not an atomic repository capture. During concurrent edits,
-use an isolated immutable input or repeat comparison at the appropriate checkpoint.
+state. The helper compares file identity, size and modification metadata before,
+during and after each read; observed edits, truncation, replacement, deletion or
+redirection during capture produce exit 2 rather than a usable manifest. Windows
+uses file identity/size/modification time because path and descriptor `ctime` can
+differ for an unchanged file; other platforms also compare `ctime`.
+Python documents the [platform-dependent timestamp semantics](https://docs.python.org/3.13/library/os.html#os.stat_result).
+
+These checks detect observable changes, not every possible concurrent write. Reads
+remain per file, not an atomic repository capture or a filesystem security boundary.
+Use isolated immutable inputs during concurrent work and compare again at closure.
 
 ## Records
 
@@ -149,3 +157,7 @@ collapsed or shortcut references. Fenced code, inline code and HTML comments are
 ignored. First reference definitions win; unused definitions are not checked.
 This is not a full CommonMark renderer: HTML links, indented code, block-container
 syntax, external URLs and anchors are outside its validation scope.
+
+For repeatable publication checks and the synthetic project lifecycle, see
+[test coverage and execution](../../tests/README.md). Those tests exercise the
+helper's behavior; they do not prove an IDE retrieved or followed these instructions.

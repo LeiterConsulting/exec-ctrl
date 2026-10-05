@@ -7,4 +7,4 @@ Use only relevant modules. Preserve host/organization policy and existing user w
 This repository contains the framework, optional offline tooling, templates and
 historical v1 references. Do not load legacy packs for a v2 task unless maintaining
 an explicitly selected v1 adoption. Current work and evidence are in
-[the current evolution record](../docs/exec_ctrl/V2_SESSION_EVOLUTION.md).
+[the current publication record](../docs/exec_ctrl/V2_PUBLICATION_READINESS.md).

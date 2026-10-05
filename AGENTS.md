@@ -7,7 +7,7 @@ Read only the modules relevant to the task. Do not recursively load the v1 libra
 When editing this repository:
 
 - Treat Markdown, adapters, catalog, examples and tools as one product. Keep their
-  behavior coherent. Current work: [project/session evolution](docs/exec_ctrl/V2_SESSION_EVOLUTION.md).
+  behavior coherent. Current work: [publication readiness](docs/exec_ctrl/V2_PUBLICATION_READINESS.md).
 - Preserve existing work and historical evidence. Do not rewrite v1 records as
   v2 proof. Label preserved v1 instructions as reference.
 - Use Python 3.10+ standard library only for the optional helper. It must remain

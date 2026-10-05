@@ -6,7 +6,9 @@ import hashlib
 import html
 import json
 import math
+import os
 import re
+import stat
 import sys
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -100,6 +102,12 @@ def local_file(root, name):
 
 def snapshot(target, names):
     """Hash only explicitly selected local files, never discover or execute inputs."""
+    def metadata_key(metadata):
+        result = (metadata.st_dev, metadata.st_ino, metadata.st_size, metadata.st_mtime_ns)
+        # Windows path stat and descriptor stat can report different ctime values
+        # for the same unchanged file. Compare modification time and file ID there.
+        return result if os.name == "nt" else result + (metadata.st_ctime_ns,)
+
     root = Path(target).resolve()
     require(root.is_dir(), "snapshot target must be a directory")
     strings(names, "snapshot paths")
@@ -114,9 +122,15 @@ def snapshot(target, names):
                 "snapshot paths cannot contain parent traversal, symbolic links or redirected directories")
         require(path not in seen, "snapshot contains aliases of the same file")
         seen.add(path)
+        before = path.stat()
+        require(before.st_size <= MAX_SNAPSHOT_FILE_BYTES, "snapshot file exceeds 16 MiB limit")
+        require(total + before.st_size <= MAX_SNAPSHOT_TOTAL_BYTES, "snapshot exceeds 64 MiB total limit")
+        changed = "snapshot input changed during capture: " + name
         digest = hashlib.sha256()
         size = 0
         with path.open("rb") as stream:
+            opened = os.fstat(stream.fileno())
+            require(stat.S_ISREG(opened.st_mode) and metadata_key(before) == metadata_key(opened), changed)
             while True:
                 chunk = stream.read(1024 * 1024)
                 if not chunk:
@@ -126,6 +140,11 @@ def snapshot(target, names):
                 require(size <= MAX_SNAPSHOT_FILE_BYTES, "snapshot file exceeds 16 MiB limit")
                 require(total <= MAX_SNAPSHOT_TOTAL_BYTES, "snapshot exceeds 64 MiB total limit")
                 digest.update(chunk)
+            require(size == before.st_size and metadata_key(before) == metadata_key(os.fstat(stream.fileno())), changed)
+        try:
+            require(candidate.resolve(strict=True) == path and metadata_key(before) == metadata_key(path.stat()), changed)
+        except OSError as exc:
+            raise Invalid(changed) from exc
         files.append({"path": path.relative_to(root).as_posix(), "sha256": digest.hexdigest(), "bytes": size})
     files.sort(key=lambda item: item["path"])
     identity = json.dumps(files, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
