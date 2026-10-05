@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "example-team",
+  "source": "example://engineering-policy",
+  "revision": "fictional-1",
+  "owner": "Example engineering governance team",
+  "required_modules": ["security", "team"],
+  "gates": [
+    {"id": "org-independent-review", "description": "A designated independent reviewer accepts the change", "source": "example://engineering-policy/review", "owner": "Example code owner"},
+    {"id": "org-license-review", "description": "Dependency licenses meet the approved organization policy", "source": "example://engineering-policy/licenses", "owner": "Example dependency owner"}
+  ]
+}

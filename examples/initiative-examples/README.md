@@ -1,3 +1,6 @@
+> **v1 reference.** For new work use the [v2 activation contract](../../START_HERE.md).
+> Apply the workflow below only when explicitly maintaining a v1 adoption.
+
 # Initiative Example Packs
 
 These examples show how initiative-mode exec-ctrl can be applied without relying on product-specific history.

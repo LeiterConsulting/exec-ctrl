@@ -1,24 +1,15 @@
 ---
-description: "Use when a self-hosting or method-evolution slice needs a one-command coherence review. Applies the self-hosting coherence checklist and makes the review outcome explicit."
+description: "Use exec-ctrl v2 for this task shape, with proportionate controls and evidence."
 name: "Exec-Ctrl Checklist Review"
 argument-hint: "Changed surfaces and validation context"
 agent: "agent"
 ---
 
-Review the current self-hosting or method-evolution change with the self-hosting coherence checklist.
+Read [START_HERE.md](../../START_HERE.md) first and follow its v2 activation contract.
+Load only relevant modules and preserve existing target instructions.
 
-Steps:
+Review entry, modules, adapters, templates and evidence for coherent behavior. Report concrete discrepancies and their implications.
 
-1. Inspect the changed generic docs, reusable prompts or templates, examples, and repo-local proof artifacts in scope.
-2. Apply the self-hosting coherence checklist section by section.
-3. Identify any must-pass failures, pass-with-gaps outcomes, or clean passes.
-4. State whether the changed surfaces teach one coherent workflow.
-5. List the main contradictions, gaps, or deferrals that should be recorded before closure.
-
-In your response:
-
-- state the overall review verdict: `pass`, `pass_with_gaps`, or `fail`
-- summarize the outcome for each checklist section
-- name the specific files or surfaces that drove the result
-- list the main fixes or deferrals that should be recorded before closure
-- state whether the change is ready to close from a coherence perspective
+Reuse the current task/issue record. Carry authorized work through appropriate
+checks and state exact evidence, open gates and the next action. A framework
+reference does not expand permissions or authorize team-system writes.

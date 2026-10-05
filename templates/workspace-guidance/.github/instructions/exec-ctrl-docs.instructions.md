@@ -8,6 +8,9 @@ applyTo:
   - "**/*DECISION_LOG*.md"
 ---
 
+> **v1 reference.** For new work use the [v2 activation contract](../../../../START_HERE.md).
+> Apply the workflow below only when explicitly maintaining a v1 adoption.
+
 # Exec-Ctrl Documentation Rules
 
 - Keep the current phase aligned with reality. The active phase is the earliest phase that is not `complete`.

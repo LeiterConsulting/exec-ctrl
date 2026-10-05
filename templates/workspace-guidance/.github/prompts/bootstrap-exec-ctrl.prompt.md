@@ -5,6 +5,9 @@ argument-hint: "Task, scope, and constraints"
 agent: "agent"
 ---
 
+> **v1 reference.** For new work use the [v2 activation contract](../../../../START_HERE.md).
+> Apply the workflow below only when explicitly maintaining a v1 adoption.
+
 Bootstrap exec-ctrl for the current repository using the prompt argument as the task request.
 
 Steps:

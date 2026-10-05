@@ -5,6 +5,9 @@ argument-hint: "Refactor goal, target boundary, and compatibility constraints"
 agent: "agent"
 ---
 
+> **v1 reference.** For new work use the [v2 activation contract](../../../../START_HERE.md).
+> Apply the workflow below only when explicitly maintaining a v1 adoption.
+
 Govern the current request as an exec-ctrl refactor initiative.
 
 Steps:
