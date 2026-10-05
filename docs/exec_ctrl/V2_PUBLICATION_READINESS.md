@@ -5,7 +5,7 @@ Method and target: this repository. Branch: `codex/publication-readiness`.
 User scope: put tests in place, execute and improve the framework, iterate on
 failures, and prepare a main-merge candidate before use in a real project.
 Implementation/local acceptance: `complete`. Hosted verification/publication:
-`complete` for the tested code below. Main merge: `not_performed`.
+`complete` for the tested code below. Main merge: `complete` (verified 2026-10-05).
 
 ## Scope and acceptance
 
@@ -66,14 +66,25 @@ catalog, activation version and current synthetic examples advance to preview 4.
   `codex/publication-readiness` into `main`. This record's documentation update
   receives its own CI validation; the code identity above remains the repair evidence.
 
+## Merge and subsequent use
+
+[PR #3](https://github.com/LeiterConsulting/exec-ctrl/pull/3) merged on 2026-10-05
+at 17:59:03 UTC as `bd343d405825f19c7a5b876ddea605083ecf7739`. Its merged tree
+matches the final publication candidate `ecc9f08aef42e087958ddbb8cf5bcac9029132e9`.
+The original failed runs and repaired-code evidence above remain historical proof
+for their stated revisions. The merged preview then supported a
+[controlled real-project revisit](REAL_PROJECT_PING_MONITOR.md); that case records
+its own target, checks and limits rather than extending the earlier CI claims.
+
 ## Remaining acceptance
 
-This increment prepares a preview for main merge and real-project trial. It does
-not certify every agent/IDE, semantic module behavior, real organization rules,
+This increment published a merged preview and supports scoped real-project trials.
+It does not certify every agent/IDE, semantic module behavior, real organization rules,
 scanner findings, external connector writes or production readiness. Independent
 task-plus-link adoption remains a [field gate](../v2/FIELD_TRIALS.md). Stable-release
 reuse/distribution terms remain an owner decision recorded in the
 [roadmap](../v2/ROADMAP.md); no license terms are invented here.
 
 The prior [session evolution](V2_SESSION_EVOLUTION.md) and lab records retain their
-original revisions/results. Main merge and a stable v2 release are separate actions.
+original revisions/results. The completed main merge and a stable v2 release are
+separate actions.
