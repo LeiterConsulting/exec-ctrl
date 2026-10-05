@@ -3,6 +3,7 @@
 import copy
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -12,6 +13,48 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 import exec_ctrl as ec
+
+
+class ReleaseMetadataTests(unittest.TestCase):
+    """Reject stale public release identity even when the catalog is coherent."""
+
+    def setUp(self):
+        temp = tempfile.TemporaryDirectory(prefix="exec-ctrl-release-metadata-")
+        self.addCleanup(temp.cleanup)
+        self.root = Path(temp.name).resolve()
+        self.version = ec.load_catalog()["framework_version"]
+        files = ["VERSION", "framework/catalog.json", "START_HERE.md", "README.md",
+                 "AGENTS.md", "CLAUDE.md", ".github/copilot-instructions.md", "CHANGELOG.md",
+                 "examples/v2/team-rules.json", "examples/v2/release-rules.json",
+                 "examples/v2/docs-record.json", "examples/v2/pending-release-record.json"]
+        files.extend(module["path"] for module in ec.load_catalog()["modules"])
+        for name in files:
+            target = self.root / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(ec.ROOT / name, target)
+        # Isolate release identity; supported links have their own fixture coverage.
+        links = patch.object(ec, "check_links", return_value=0)
+        links.start()
+        self.addCleanup(links.stop)
+
+    def test_current_release_accepts_preserved_historical_changelog(self):
+        result = ec.validate_repository(self.root)
+        self.assertTrue(result["valid"])
+        self.assertEqual(result["version"], self.version)
+
+    def test_validation_rejects_stale_readme(self):
+        readme = self.root / "README.md"
+        readme.write_text(readme.read_text(encoding="utf-8").replace(
+            "**" + self.version + "**", "**1.0.0**"), encoding="utf-8")
+        with self.assertRaisesRegex(ec.Invalid, "README version mismatch"):
+            ec.validate_repository(self.root)
+
+    def test_validation_rejects_stale_newest_changelog_even_with_current_history(self):
+        changelog = self.root / "CHANGELOG.md"
+        changelog.write_text("# Changelog\n\n## 1.0.0\n\nHistorical notes\n\n" +
+                             changelog.read_text(encoding="utf-8"), encoding="utf-8")
+        with self.assertRaisesRegex(ec.Invalid, "latest changelog version mismatch"):
+            ec.validate_repository(self.root)
 
 
 class PublicationReadiness(unittest.TestCase):

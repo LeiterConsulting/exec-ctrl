@@ -16,6 +16,9 @@ Change normative guidance before adapting examples and evidence records. Add tes
 for behavioral changes to routing, parsing, policy composition or evidence checks;
 do not add tests that only assert prose contains a preferred sentence. Check the
 entry contract's reading budget and inspect version/migration boundaries.
+Keep VERSION, catalog, activation entry, the README's bold current-version marker,
+newest changelog heading and active example records on the same version. Preserve
+historical changelog entries and evidence records with their original identities.
 Verify generated pending records and example policies as well as changed commands.
 Test denial, stale identity, malformed input and read-only behavior for new helper
 capabilities. Explicit-file snapshots must disclose their bounded scope; never

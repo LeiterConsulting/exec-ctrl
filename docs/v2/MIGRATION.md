@@ -42,3 +42,10 @@ Preview.4 retains schema 1, the snapshot format and CLI commands. Snapshot captu
 now rejects observed changes during a file read. A previously accepted unstable
 capture may return exit 2; isolate the inputs and capture again. Preserve earlier
 records with their original helper/version rather than relabeling old evidence.
+
+Preview.5 retains schema 1 and the existing CLI/snapshot formats. Repository
+validation additionally rejects stale README and newest changelog version metadata.
+Use `main` for current instructions or the `v2.0.0-preview.5` tag for a fixed source;
+the older `v2` branch preserves an earlier preview. For active machine records,
+review the updated guidance, regenerate with the current version and recheck current
+evidence. Keep earlier records and their helpers unchanged.

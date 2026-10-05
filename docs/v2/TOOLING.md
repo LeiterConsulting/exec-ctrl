@@ -154,8 +154,9 @@ validation, or a caller's parsing error for a failed application test.
 This is a structural checker, not a security scanner, policy engine or proof of
 completion. It cannot detect omitted risk facts, undisclosed policies, fabricated
 reports or a stale snapshot given a new label. Review those claims separately.
-It does not fetch evidence references. `validate` checks catalog/entry coherence
-and local Markdown file destinations. Supported link syntax includes inline links
+It does not fetch evidence references. `validate` checks catalog/entry coherence,
+current README/changelog version metadata, active examples and local Markdown
+file destinations. Supported link syntax includes inline links
 and images, titles, angle destinations, balanced/escaped parentheses, and full,
 collapsed or shortcut references. Fenced code, inline code and HTML comments are
 ignored. First reference definitions win; unused definitions are not checked.

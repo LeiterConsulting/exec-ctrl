@@ -98,4 +98,7 @@ offline suite does not satisfy the cross-agent gate.
 
 No repository license file existed in the reviewed baseline. Record the owner's
 chosen reuse/distribution terms before presenting a stable release for broad
-adoption; this increment does not invent those terms.
+adoption. On 2026-10-05 the owner selected the [MIT license](../../LICENSE) for
+[preview 5 publication](../exec_ctrl/V2_PREVIEW_5_PUBLICATION.md). That decision
+addresses reuse terms; the independent adoption and other acceptance gates above
+remain open.
