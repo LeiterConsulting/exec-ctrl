@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.0.0-preview.5 — 2026-10-05
+
+- Publish the accumulated v2 improvements with a pinned preview tag and clear
+  current-main entry. Preserve the older `v2` branch and v1 history as reference.
+- Add the owner-selected MIT license for framework use and distribution.
+- Apply feedback from the controlled Go availability-summary repair: preserve
+  dirty work, compare current source identity and distinguish author review.
+- Include disposable release acceptance for wrong staged artifacts, verified
+  rollback, unavailable policy, inert metadata and missing independent approval.
+- Reject stale public README and newest changelog versions in repository validation;
+  add failing-before-repair release-metadata regressions.
+- Keep the helper offline/read-only, schema 1 and existing CLI formats. Historical
+  records remain pinned to their original helper/version. See
+  [publication evidence and limits](docs/exec_ctrl/V2_PREVIEW_5_PUBLICATION.md).
+
 ## 2.0.0-preview.4 — 2026-10-05
 
 - Reject observed file edits, truncation, replacement, deletion or redirection

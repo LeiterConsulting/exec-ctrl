@@ -6,9 +6,12 @@ Give your agent the work and this repository:
 
 > Fix the checkout retry bug. Use https://github.com/LeiterConsulting/exec-ctrl
 
-The default branch carries the v2 preview; the [v2 branch](https://github.com/LeiterConsulting/exec-ctrl/tree/v2)
-is also available for development. Pin a reviewed commit for reproducible ongoing
-adoption. The preserved [v1 guide](V1_README.md) remains available for existing users.
+The default branch, `main`, carries the current v2 preview. See the
+[preview 5 release](https://github.com/LeiterConsulting/exec-ctrl/releases/tag/v2.0.0-preview.5)
+for changes and verification. For reproducible adoption, give your agent the
+[version tag](https://github.com/LeiterConsulting/exec-ctrl/tree/v2.0.0-preview.5)
+and retrieve all instructions from that revision. The older `v2` branch is historical;
+use `main` for current updates. The preserved [v1 guide](V1_README.md) remains available.
 
 The agent reads the entry instructions, inspects your project, selects relevant
 controls, and carries them through implementation, verification and handoff.
@@ -72,11 +75,19 @@ flowchart LR
 
 ## Status
 
-**2.0.0-preview.4** adds reproducible project-lifecycle tests, audited CLI execution
-and rejection of observed file changes during snapshot capture. It retains the
-session/checkpoint guidance, task playbooks, pending records and typed policy gates.
-See [publication readiness and evidence](docs/exec_ctrl/V2_PUBLICATION_READINESS.md)
-and [test coverage](tests/README.md) for current results and how to reproduce them.
+**2.0.0-preview.5** brings the controlled real-project feedback and disposable
+release/rollback acceptance into a versioned public preview. It checks artifact
+identity despite a healthy response, preserves required review holds, and rejects
+stale README/changelog versions during repository validation. It retains the compact
+activation entry, session controls, typed policy gates and offline, read-only helper.
+See [preview 5 publication evidence](docs/exec_ctrl/V2_PREVIEW_5_PUBLICATION.md) and
+[test coverage](tests/README.md) for current results and reproduction commands.
+
+The [Ping Monitor revisit](docs/exec_ctrl/REAL_PROJECT_PING_MONITOR.md) exercised a
+real Go defect in an isolated worktree. The
+[policy/release scenarios](docs/exec_ctrl/V2_POLICY_RELEASE_ACCEPTANCE.md) exercised
+actual disposable artifacts and deliberately held missing approval. These controlled
+cases inform the guidance; they do not establish independent IDE adoption.
 
 The [preview 3 evolution record](docs/exec_ctrl/V2_SESSION_EVOLUTION.md) preserves
 its 97-test hosted validation and controlled lab results. Those historical results
@@ -93,3 +104,7 @@ evidence explicit.
 
 Existing v1 users can keep their workflows. The [v1 guide](V1_README.md), templates
 and historical records remain available as versioned reference.
+
+## License
+
+exec-ctrl is available under the [MIT license](LICENSE).

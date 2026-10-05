@@ -560,6 +560,11 @@ def validate_repository(root=ROOT):
     catalog = load_catalog(root)
     version = (root / "VERSION").read_text(encoding="utf-8").strip()
     require(version == catalog["framework_version"], "VERSION/catalog mismatch")
+    readme = (root / "README.md").read_text(encoding="utf-8")
+    require("**" + version + "**" in readme, "README version mismatch")
+    changelog = (root / "CHANGELOG.md").read_text(encoding="utf-8")
+    latest = re.search(r"^## ([^\s]+)(?:[ \t].*)?$", changelog, flags=re.M)
+    require(latest is not None and latest[1] == version, "latest changelog version mismatch")
     entry = (root / catalog["entry"]).read_text(encoding="utf-8")
     require(version in entry, "entry version mismatch")
     require(len(entry.split()) <= 1700, "activation contract exceeds 1700-word budget")
@@ -575,7 +580,7 @@ def validate_repository(root=ROOT):
     check_record(read_json(root / "examples/v2/pending-release-record.json"), catalog, [example_rules[1]])
     checked = check_links(root)
     return {"valid": True, "version": version, "modules": len(catalog["modules"]), "local_links_checked": checked,
-            "limits": "Catalog, examples and supported local links only; external URLs, anchors and actual agent behavior are not verified."}
+            "limits": "Catalog, release metadata, examples and supported local links only; external URLs, anchors and actual agent behavior are not verified."}
 
 
 def main(argv=None):

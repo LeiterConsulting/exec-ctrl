@@ -1,5 +1,8 @@
 # v2 publication readiness
 
+This record covers preview 4. Current release preparation and acceptance:
+[preview 5 publication](V2_PREVIEW_5_PUBLICATION.md).
+
 Started: 2026-10-05. Baseline: `2b9cfbd`, clean `main`, preview 3.
 Method and target: this repository. Branch: `codex/publication-readiness`.
 User scope: put tests in place, execute and improve the framework, iterate on

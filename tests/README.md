@@ -19,7 +19,7 @@ the optional helper itself remains offline and read-only.
 | `test_exec_ctrl.py` | Routing, authority/risk facts, additive policy identity, evidence gates, closure denials, CLI exit codes |
 | `test_adversarial.py` | Malformed JSON/type mutations, size limits, policy order and supported local Markdown links |
 | `test_session_tools.py` | Pending records, typed evidence requirements, current-file snapshots, containment and resource bounds |
-| `test_publication_readiness.py` | Complete disposable project workflow, all modes/modules through 94 routing cases, audited CLI behavior, history preservation and unstable capture |
+| `test_publication_readiness.py` | Complete disposable project workflow, all modes/modules through 94 routing cases, audited CLI behavior, history preservation, unstable capture and stale release-metadata denial |
 | `test_release_acceptance.py` | Real disposable zipapp build/staging/runtime/rollback, required review hold, unavailable policy, inert metadata and a guarded private-file canary |
 
 ## Reproducible project acceptance
@@ -81,5 +81,5 @@ also require an agent to inspect the real target and carry out their guidance. O
 results cannot prove instruction retrieval, semantic defect detection, actual enterprise
 policy compliance, connector authorization, independent approval or customer acceptance.
 Use the [field-trial protocol](../docs/v2/FIELD_TRIALS.md) for task-plus-link adoption
-and the [publication record](../docs/exec_ctrl/V2_PUBLICATION_READINESS.md) for this
+and the [publication record](../docs/exec_ctrl/V2_PREVIEW_5_PUBLICATION.md) for this
 increment's evidence. Keep earlier runs/versioned records unchanged.
