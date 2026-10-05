@@ -25,6 +25,12 @@ snapshot helps identify dirty source; include relevant manifests/tests/instructi
 and separately record artifact/environment identity. Unlisted inputs remain outside
 that snapshot's coverage.
 
+A successful command or healthy response can still come from the wrong artifact.
+Compare the staged/running identity with the expected built artifact and check the
+required behavior in that environment. After an abort, verify the restored
+artifact and its behavior; copying an old file alone is not rollback acceptance.
+This says nothing about reversing persisted data, which needs its own recovery.
+
 ## Evidence and gate
 
 `delivery-readiness`: artifact/source identity, required checks, rollout/recovery
