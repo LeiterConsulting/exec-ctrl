@@ -60,6 +60,11 @@ file output and corrected a broken build command. It exercised source freshness
 and preservation of existing dirty work. The resulting trial/CLI documentation
 refinements come from that observed use; independent adoption remains untested.
 
+The following [policy/release acceptance](../exec_ctrl/V2_POLICY_RELEASE_ACCEPTANCE.md)
+adds disposable built-artifact identity, runtime and rollback checks, plus a final
+record deliberately held for missing independent approval. This is reproducible
+fixture coverage, not real organization compliance, review or connector adoption.
+
 Run the [trial protocol](FIELD_TRIALS.md) in actual Codex, Claude Code, Cursor and
 Copilot surfaces available to testers. Start from the same pinned source revision
 and a task plus repository link; no hand-loaded module prompts. Include small fixes,

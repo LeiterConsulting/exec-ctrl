@@ -17,6 +17,10 @@ import sys
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
+# Optional synthetic canary supplied by a test, never a production secret path.
+_canary = os.environ.get("EXEC_CTRL_TEST_DENY_READ")
+FORBIDDEN_READ = os.path.normcase(os.path.realpath(_canary)) if _canary else None
+
 
 def deny_side_effects(event, args):
     mutations = {"os.remove", "os.rmdir", "os.rename", "os.mkdir", "os.chmod",
@@ -27,6 +31,8 @@ def deny_side_effects(event, args):
         mode, flags = args[1:3]
         denied = bool(isinstance(mode, str) and any(char in mode for char in "wax+"))
         denied |= bool(isinstance(flags, int) and flags & (os.O_WRONLY | os.O_RDWR | os.O_APPEND | os.O_CREAT | os.O_TRUNC))
+        if FORBIDDEN_READ and isinstance(args[0], (str, bytes, os.PathLike)):
+            denied |= os.path.normcase(os.path.realpath(os.fsdecode(args[0]))) == FORBIDDEN_READ
     if denied:
         raise RuntimeError("read-only audit denied: " + event)
 

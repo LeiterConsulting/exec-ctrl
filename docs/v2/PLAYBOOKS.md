@@ -51,6 +51,9 @@ running artifact. A live task check observes behavior in that environment.
 Declare product-specific gates for the required stages. Typed `requires` lists in
 the optional helper prevent a declared build result satisfying a live-evidence
 requirement, but still rely on honest tags, actual reports and environment review.
+Check the expected artifact identity even when a command exits successfully and
+the response looks correct. After a failed rollout, verify both restored identity
+and behavior. A working candidate can still be held for missing required approval.
 
 ## Example: handle a missing integration
 

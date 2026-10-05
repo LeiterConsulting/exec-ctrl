@@ -20,6 +20,7 @@ the optional helper itself remains offline and read-only.
 | `test_adversarial.py` | Malformed JSON/type mutations, size limits, policy order and supported local Markdown links |
 | `test_session_tools.py` | Pending records, typed evidence requirements, current-file snapshots, containment and resource bounds |
 | `test_publication_readiness.py` | Complete disposable project workflow, all modes/modules through 94 routing cases, audited CLI behavior, history preservation and unstable capture |
+| `test_release_acceptance.py` | Real disposable zipapp build/staging/runtime/rollback, required review hold, unavailable policy, inert metadata and a guarded private-file canary |
 
 ## Reproducible project acceptance
 
@@ -37,6 +38,16 @@ explicitly synthetic acceptance, with no production approval or independent revi
 The deliberate application failure is an expected assertion inside a passing framework
 test; it is not hidden by skipping a failed test.
 
+The release scenario builds three actual stdlib zipapps and invokes them with
+fixed synthetic input. An unexpected artifact returns exit 0 and the right total
+but has the wrong version/digest. The harness observes that mismatch, rejects a
+passing gate citing the failed identity, restores and checks the prior artifact,
+then stages and runs the correct candidate. Its final release record remains
+blocked for the fictional independent reviewer; local tests do not supply approval.
+A handoff is an explicitly unsent local draft, not a synchronized team item.
+Separate cases exercise unavailable policy and reject removal of its required gate.
+See [the controlled acceptance record](../docs/exec_ctrl/V2_POLICY_RELEASE_ACCEPTANCE.md).
+
 ## Offline/read-only execution and capture consistency
 
 `audit_cli.py` is a test-only subprocess wrapper. It installs a Python audit hook
@@ -45,6 +56,13 @@ operations. All five helper commands and an invalid-input path run under it.
 Separate probes verify that the guard rejects actual writes, directory creation,
 process attempts and sockets. Executable-looking and URL evidence references remain
 data. This is a regression guard for exercised paths, not a general host sandbox.
+
+Release tests also supply `EXEC_CTRL_TEST_DENY_READ` for one fictional private
+canary path. The hook denies opening that file, and a separate read probe must
+trigger the guard. Helper invocations operate with that restriction while
+executable-looking references remain inert and private/unfinished files stay out
+of the explicitly built artifact. This does not establish an agent's resistance
+to prompt injection or host-wide secret protection.
 
 Deterministic capture tests edit the same-size content, truncate a file, and replace
 or delete the selected path at read/close boundaries. They require an invalid result
