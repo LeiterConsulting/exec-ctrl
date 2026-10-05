@@ -4,10 +4,11 @@
 
 Give your agent the work and this repository:
 
-> Fix the checkout retry bug. Use https://github.com/LeiterConsulting/exec-ctrl/tree/v2
+> Fix the checkout retry bug. Use https://github.com/LeiterConsulting/exec-ctrl
 
-The `v2` branch contains this preview. The default branch retains v1. Use the
-branch-specific link above when evaluating v2, or pin it to a reviewed commit.
+The default branch carries the v2 preview; the [v2 branch](https://github.com/LeiterConsulting/exec-ctrl/tree/v2)
+is also available for development. Pin a reviewed commit for reproducible ongoing
+adoption. The preserved [v1 guide](V1_README.md) remains available for existing users.
 
 The agent reads the entry instructions, inspects your project, selects relevant
 controls, and carries them through implementation, verification and handoff.
@@ -75,6 +76,8 @@ flowchart LR
 pending-record generation, bounded content snapshots, typed policy/evidence gates
 and performance/accessibility/compatibility routing. See the
 [current review and evidence](docs/exec_ctrl/V2_SESSION_EVOLUTION.md).
+Validation: all 97 framework tests passed on the four hosted Windows/Linux jobs;
+the controlled lab passed 63 checks, 94 routing cases and 68 real HTTP requests.
 
 Previous [controlled lab results](docs/exec_ctrl/V2_SECOND_PASS_TESTING.md) remain
 versioned evidence. Independent task-plus-link trials across IDEs and the stable
