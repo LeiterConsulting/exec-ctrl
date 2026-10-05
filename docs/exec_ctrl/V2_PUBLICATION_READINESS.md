@@ -5,7 +5,7 @@ Method and target: this repository. Branch: `codex/publication-readiness`.
 User scope: put tests in place, execute and improve the framework, iterate on
 failures, and prepare a main-merge candidate before use in a real project.
 Implementation/local acceptance: `complete`. Hosted verification/publication:
-`in_progress`. Main merge: `not_performed`.
+`complete` for the tested code below. Main merge: `not_performed`.
 
 ## Scope and acceptance
 
@@ -57,7 +57,14 @@ catalog, activation version and current synthetic examples advance to preview 4.
   and [push matrix](https://github.com/LeiterConsulting/exec-ctrl/actions/runs/37351611046)
   on the Windows fixture alias described above; cancelled jobs were not counted as
   passes. The fixture repair and complete-matrix setting require a new hosted run.
-- Hosted results and publication identity: pending.
+- Repaired code revision: `02e753a5983177126a837bff7bd298b022951805`.
+  [PR validation](https://github.com/LeiterConsulting/exec-ctrl/actions/runs/37351837594)
+  and [push validation](https://github.com/LeiterConsulting/exec-ctrl/actions/runs/37351830995)
+  succeeded on all four Windows/Linux Python 3.10/3.13 jobs. Each job passed all
+  108 tests with no skips, including both symlink checks and all mutation hooks.
+- Publication candidate: [PR #3](https://github.com/LeiterConsulting/exec-ctrl/pull/3),
+  `codex/publication-readiness` into `main`. This record's documentation update
+  receives its own CI validation; the code identity above remains the repair evidence.
 
 ## Remaining acceptance
 
