@@ -4,7 +4,9 @@ Status: independent blind cross-agent trials not run. The
 [controlled local lab](../exec_ctrl/V2_CONTROLLED_LAB_RESULTS.md) and
 [adversarial second pass](../exec_ctrl/V2_SECOND_PASS_TESTING.md) completed in
 the authoring task. This file is the independent-trial protocol, not a claim that
-the scenarios below passed across IDEs.
+the scenarios below passed across IDEs. A later
+[Ping Monitor revisit](../exec_ctrl/REAL_PROJECT_PING_MONITOR.md) exercised a
+bounded fix in an existing real project; it was also a controlled authoring run.
 
 For each host, use a disposable target repository with realistic instructions,
 code and tests. Record host/version/settings, date, method commit, target baseline,
@@ -41,3 +43,20 @@ Score retrieval, selection, action boundaries, task correctness, evidence and
 overhead separately as pass/fail/blocked. Record exact observed deviations and
 reproduction, not a model's self-reported confidence. Repeat changed cases after
 fixes. Do not claim statistical reliability from a single successful trial.
+
+## Controlled revisits of existing projects
+
+For a small, mostly completed project, choose one concrete discrepancy or
+unfinished acceptance check that available tools can verify. Capture baseline,
+dirty state and the included source before acting; an isolated worktree does not
+automatically include uncommitted changes. Preserve unrelated work and say exactly
+which version was tested. Prefer the cheapest meaningful regression and verify
+affected documentation commands when operations change.
+
+Reuse the existing task record. Retain a failing reproduction, repaired diff and
+current passing evidence separately; optional helper snapshots should cover the
+selected inputs and explicit exclusions. Do not run unrelated modules or access
+production systems just to obtain coverage. Record actual tool versions, prompt,
+method revision, exercised controls, unavailable checks and any useful framework
+improvement. Label preloaded context and author review explicitly. A controlled
+revisit does not satisfy the independent task-plus-link trial above.

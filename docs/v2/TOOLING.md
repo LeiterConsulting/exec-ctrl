@@ -144,6 +144,10 @@ report's truth, environment identity or an actor's independence. See the
 Exit codes: `0` = valid route/framework, or record ready to close; `1` = structurally
 valid record with unresolved gates; `2` = invalid input or inconsistent claim.
 Read `state` as well as `ready_to_close`; readiness does not change task state.
+Valid/pending results are JSON on stdout. Invalid-input JSON is on stderr with
+exit 2; automation should capture both streams and inspect the exit code before
+parsing the result. Do not mistake an empty stdout on rejection for successful
+validation, or a caller's parsing error for a failed application test.
 
 ## Limits
 
