@@ -39,6 +39,11 @@ team systems. Current validation belongs to that review, not prior preview resul
 
 ## Next: field acceptance
 
+[Preview 4 publication preparation](../exec_ctrl/V2_PUBLICATION_READINESS.md) puts
+a synthetic project lifecycle into ordinary CI and checks offline/read-only helper
+execution. It also rejects observed mid-capture file changes. These are repeatable
+helper acceptance checks, leaving actual agent adoption to the trials below.
+
 [Preview 2 testing](../exec_ctrl/V2_SECOND_PASS_TESTING.md) adds adversarial helper
 regressions and concurrent/failed-operation lab coverage. It fixes policy argument
 ordering, expands supported local Markdown links and bounds JSON inputs. These

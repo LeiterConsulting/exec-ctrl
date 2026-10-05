@@ -72,12 +72,15 @@ flowchart LR
 
 ## Status
 
-**2.0.0-preview.3** adds session/checkpoint guidance, concrete task playbooks,
-pending-record generation, bounded content snapshots, typed policy/evidence gates
-and performance/accessibility/compatibility routing. See the
-[current review and evidence](docs/exec_ctrl/V2_SESSION_EVOLUTION.md).
-Validation: all 97 framework tests passed on the four hosted Windows/Linux jobs;
-the controlled lab passed 63 checks, 94 routing cases and 68 real HTTP requests.
+**2.0.0-preview.4** adds reproducible project-lifecycle tests, audited CLI execution
+and rejection of observed file changes during snapshot capture. It retains the
+session/checkpoint guidance, task playbooks, pending records and typed policy gates.
+See [publication readiness and evidence](docs/exec_ctrl/V2_PUBLICATION_READINESS.md)
+and [test coverage](tests/README.md) for current results and how to reproduce them.
+
+The [preview 3 evolution record](docs/exec_ctrl/V2_SESSION_EVOLUTION.md) preserves
+its 97-test hosted validation and controlled lab results. Those historical results
+are not proof of this revision.
 
 Previous [controlled lab results](docs/exec_ctrl/V2_SECOND_PASS_TESTING.md) remain
 versioned evidence. Independent task-plus-link trials across IDEs and the stable

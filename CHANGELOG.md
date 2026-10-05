@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.0.0-preview.4 — 2026-10-05
+
+- Reject observed file edits, truncation, replacement, deletion or redirection
+  during snapshot capture; preserve the portable manifest format and bounded scope.
+- Handle Windows path/descriptor timestamp differences without rejecting stable files.
+- Add a CI-reproducible project fix workflow: failing tenant-access regression,
+  scoped repair, new content identity, current passing evidence and changed-policy denial.
+- Exercise all CLI commands under a test-only guard that denies writes, network and
+  process creation. Add routing-matrix and version/policy lifecycle acceptance.
+- Document [test execution](tests/README.md) and
+  [publication evidence](docs/exec_ctrl/V2_PUBLICATION_READINESS.md). Real-project and
+  independent IDE adoption remain distinct acceptance gates.
+
 ## 2.0.0-preview.3 — 2026-10-05
 
 - Add proportionate session working agreements, checkpoints/resumption, daily task

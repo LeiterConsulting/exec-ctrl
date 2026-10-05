@@ -37,3 +37,8 @@ generation require no target adoption files. Existing helpers cannot interpret t
 new gate field, so keep historical records/helpers pinned. For ongoing work, review
 required evidence kinds and current input coverage before collecting fresh evidence.
 The new nonfunctional routing signals add controls without changing existing facts.
+
+Preview.4 retains schema 1, the snapshot format and CLI commands. Snapshot capture
+now rejects observed changes during a file read. A previously accepted unstable
+capture may return exit 2; isolate the inputs and capture again. Preserve earlier
+records with their original helper/version rather than relabeling old evidence.

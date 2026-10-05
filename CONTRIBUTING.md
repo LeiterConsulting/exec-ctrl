@@ -20,6 +20,9 @@ Verify generated pending records and example policies as well as changed command
 Test denial, stale identity, malformed input and read-only behavior for new helper
 capabilities. Explicit-file snapshots must disclose their bounded scope; never
 auto-read secrets or execute commands to infer project facts.
+The [test guide](tests/README.md) describes the reproducible synthetic project
+workflow, CLI side-effect guard, platform skips and publication acceptance limits.
+All these checks run through ordinary unittest discovery in the existing CI matrix.
 
 For provider-specific behavior, cite dated official documentation and distinguish
 documentation support from observed field results. Update the field-trial record
