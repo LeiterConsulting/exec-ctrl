@@ -215,10 +215,13 @@ class PublicationReadiness(unittest.TestCase):
 
     def unstable_snapshot(self, mutate, after_close=False):
         with tempfile.TemporaryDirectory(prefix="exec-ctrl-capture-") as temp:
-            root = Path(temp)
+            # Windows runners may use an 8.3 alias in TEMP. Match the helper's
+            # canonical path so every injected mutation actually reaches it.
+            root = Path(temp).resolve()
             path = root / "source.txt"
             path.write_bytes(b"original")
             original_open = Path.open
+            mutations = []
 
             class MutatingReader:
                 def __init__(self, stream):
@@ -233,6 +236,7 @@ class PublicationReadiness(unittest.TestCase):
                     result = self.stream.__exit__(*args)
                     if after_close:
                         mutate(path, root)
+                        mutations.append("closed")
                     return result
 
                 def fileno(self):
@@ -243,6 +247,7 @@ class PublicationReadiness(unittest.TestCase):
                     if value and not self.changed and not after_close:
                         self.changed = True
                         mutate(path, root)
+                        mutations.append("read")
                     return value
 
             def hooked_open(candidate, *args, **kwargs):
@@ -253,6 +258,7 @@ class PublicationReadiness(unittest.TestCase):
 
             with patch.object(Path, "open", hooked_open), self.assertRaisesRegex(ec.Invalid, "changed during capture"):
                 ec.snapshot(root, ["source.txt"])
+            self.assertEqual(mutations, ["closed" if after_close else "read"])
 
     def test_snapshot_rejects_same_size_edit_during_capture(self):
         def change(path, root):

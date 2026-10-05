@@ -28,6 +28,7 @@ Implementation/local acceptance: `complete`. Hosted verification/publication:
 | Capture accepted a replaced path after the read | Replacement at the close boundary also failed against preview 3. Re-resolve and compare path identity after close; deletion likewise returns invalid input. |
 | Windows `stat`/`fstat` disagree on `ctime` for unchanged rewrites | The first repair caused false rejections in stable-file tests. A local repeated-rewrite probe isolated the timestamp difference. On Windows compare file ID, size and modification time; include `ctime` on other platforms. |
 | Whole-project method acceptance depended on a separate lab | Add a checked-in test that creates an actual defective service, sees its regression fail, repairs it and closes only with fresh passing evidence. This is helper acceptance, not a blind agent-adoption trial. |
+| Hosted Windows mutation fixtures used a temporary-directory alias | First hosted runs failed four mutation assertions because the fixture's short TEMP path differed from the helper's resolved path, so the mutation hook never ran. Resolve the fixture root and assert each mutation occurred; retain every matrix job with `fail-fast: false`. |
 
 All three initial mutation regressions failed before the helper repair. The first
 replacement fixture hit Windows file locking while trying to rename an open file;
@@ -51,6 +52,11 @@ catalog, activation version and current synthetic examples advance to preview 4.
   four negative probes check the guard itself. No network or production access.
 - Local final validation: 10 modules, 284 supported local links; activation entry
   remains 1,264 words within its 1,700-word ceiling. `git diff --check` passed.
+- Initial published candidate `b2be76e` failed its
+  [PR matrix](https://github.com/LeiterConsulting/exec-ctrl/actions/runs/37351620006)
+  and [push matrix](https://github.com/LeiterConsulting/exec-ctrl/actions/runs/37351611046)
+  on the Windows fixture alias described above; cancelled jobs were not counted as
+  passes. The fixture repair and complete-matrix setting require a new hosted run.
 - Hosted results and publication identity: pending.
 
 ## Remaining acceptance
