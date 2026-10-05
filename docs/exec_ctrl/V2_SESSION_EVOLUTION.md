@@ -1,7 +1,7 @@
 # v2 project and session evolution
 
 Started: 2026-10-05. Implementation/test increment: `complete`.
-Default-branch rollout: `in_progress`. Baseline: `09d75e3`, clean `v2`.
+Default-branch rollout: `complete`. Baseline: `09d75e3`, clean `v2`.
 Method and target: this repository. User request: re-review the updates and improve
 the complete framework for projects and agentic sessions.
 
@@ -51,7 +51,7 @@ executes record content or writes adoption files.
 
 Baseline: 73 tests and repository validation passed on 2026-10-05. Remote/default
 branch inspected; main remains v1, v2 matches the local baseline, no open PR exists.
-Implementation and published-source acceptance completed; default rollout follows.
+Implementation, published-source acceptance and default-branch rollout completed.
 
 Local implementation checks: suite now discovers 97 tests; 95 passed and two
 symlink cases skipped because this Windows host cannot create symlinks. Repository
@@ -95,10 +95,18 @@ Unchanged extracted/running application source SHA-256:
 
 ## Rollout and remaining program gates
 
-Promote the labeled preview through a PR after checks pass. Repository branch
+Promoted the labeled preview through [PR #2](https://github.com/LeiterConsulting/exec-ctrl/pull/2)
+after push and pull-request checks passed. Merge commit:
+`205de9a2dcb27eb1fa224763fa6d8b93b331d073`. Its tree matched the tested PR branch;
+[default-branch CI](https://github.com/LeiterConsulting/exec-ctrl/actions/runs/37346912351)
+also passed all four jobs. The ordinary repository link now routes to the v2 entry.
+
+Repository branch
 protection and ruleset metadata were inspected: no mandatory protection/review rule
 was returned for main. No review or enforcement control is being disabled.
 The complete repo-link entry becomes v2 while historical v1 references are retained.
+Review was the agent's final diff/coherence review; no independent approval was
+invented. The v2 development branch is retained and synchronized with the rollout.
 
 This iteration is still a controlled author-session exercise. Fresh independent
 task-plus-link trials across advertised hosts, real policy/scanner/connector
