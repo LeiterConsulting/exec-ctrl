@@ -25,6 +25,18 @@ offline routing/record checks, regression tests and CI configuration.
 Acceptance: coherent local entry paths, meaningful negative tests, validated local
 links, transparent evidence limits. No provider is called field-validated yet.
 
+## Preview 3: practical project and session controls
+
+[The October review](../exec_ctrl/V2_SESSION_EVOLUTION.md) extends the foundation
+with bounded session/checkpoint guidance, daily task playbooks, integration mappings,
+pending-record generation, explicit-file snapshots and typed evidence/policy gates.
+Nonfunctional signals route performance, accessibility and compatibility concerns.
+The compact activation contract and optional, read-only helper remain the entry.
+
+These changes reduce manual bookkeeping and make stale/wrong-kind evidence
+checkable. They do not perform semantic project inspection or automatically connect
+team systems. Current validation belongs to that review, not prior preview results.
+
 ## Next: field acceptance
 
 [Preview 2 testing](../exec_ctrl/V2_SECOND_PASS_TESTING.md) adds adversarial helper

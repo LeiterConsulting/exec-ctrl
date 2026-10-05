@@ -21,6 +21,12 @@ Use for features, refactors, migrations, public interfaces and multiple services
 - Include observability, support ownership, deprecation and eventual retirement
   where relevant. Do not stop the lifecycle at "code compiles."
 
+Keep a trace from each material requirement to its affected contract and acceptance.
+Choose measurable performance/reliability constraints and concrete accessibility
+or compatibility checks when relevant. Reassess after newly discovered consumers,
+data ownership or operational dependencies. An exploratory prototype proves its
+bounded hypothesis; identify the remaining production lifecycle before reuse.
+
 ## Evidence and gate
 
 `design`: affected contracts and dependencies, acceptance constraints and rationale

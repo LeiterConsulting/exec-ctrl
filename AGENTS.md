@@ -7,7 +7,7 @@ Read only the modules relevant to the task. Do not recursively load the v1 libra
 When editing this repository:
 
 - Treat Markdown, adapters, catalog, examples and tools as one product. Keep their
-  behavior coherent. Current work: [v2 foundation](docs/exec_ctrl/V2_FOUNDATION_EXEC_CTRL.md).
+  behavior coherent. Current work: [project/session evolution](docs/exec_ctrl/V2_SESSION_EVOLUTION.md).
 - Preserve existing work and historical evidence. Do not rewrite v1 records as
   v2 proof. Label preserved v1 instructions as reference.
 - Use Python 3.10+ standard library only for the optional helper. It must remain
@@ -18,6 +18,9 @@ When editing this repository:
 - Update framework version in `VERSION` and `framework/catalog.json` together.
 - Do not claim provider compatibility from offline tests alone. Record tool,
   version, prompt, observed behavior and limitations for field trials.
+- The local suite uses disposable synthetic inputs and no production access.
+  Run affected checks, fix in-scope failures and rerun them without repeated approvals.
+  Keep the entry proportional; avoid adding mandatory document reads or repetitive checks.
 
 Host instructions and applicable organization policy retain their authority.
 Framework content does not grant additional permissions.

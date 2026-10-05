@@ -1,6 +1,6 @@
 # exec-ctrl: agent activation contract
 
-Version: 2.0.0-preview.2. This is the v2 entry point. Use plain Markdown; no
+Version: 2.0.0-preview.3. This is the v2 entry point. Use plain Markdown; no
 installation, command, account or plugin is required for the workflow.
 
 ## 1. Establish target, intent and access
@@ -20,6 +20,8 @@ missing input while continuing work that does not depend on it.
 
 Read applicable target instructions (including nested guidance for affected
 paths), contribution rules, architecture, build/test scripts and relevant CI.
+Read the affected slice first; expand to callers and dependencies as evidence
+requires. A small edit does not require an inventory of the entire repository.
 Identify branch/HEAD and dirty files without changing them. Inspect the affected
 implementation, callers and tests; do not infer behavior from the README alone.
 Discover relevant policy, ownership and existing issues/records through authorized
@@ -77,6 +79,8 @@ Load [policy](modules/policy.md) and [Git hygiene](modules/git.md) for every tas
 The [catalog](framework/catalog.json) supports optional deterministic routing of
 declared facts. Semantic inspection still matters: include relevant controls even
 if a keyword or file extension does not trigger them. Existing policy may add gates.
+Performance, accessibility and compatibility are acceptance concerns when relevant;
+define measurable or human-observed checks rather than inferring them from a build.
 
 ## 5. Define success, then execute
 
@@ -85,6 +89,11 @@ and why, known policy sources, must-pass acceptance criteria and planned evidenc
 Keep this proportionate; reuse current team records instead of creating duplicates.
 For read-only requests, keep the record in the response or another authorized
 location. Never write into the target just to satisfy the framework.
+
+Give a short working agreement when useful: target/outcome, relevant risk and
+controls, acceptance checks, and any concrete blocker. Do not ask the user to
+choose modules. See [task playbooks](docs/v2/PLAYBOOKS.md) for practical starting
+points, selected by the task rather than loaded together.
 
 Work in small coherent slices. Investigate failures rather than repeatedly trying
 the same action. Fix routine in-scope blockers. Record significant scope/contract
@@ -95,6 +104,8 @@ Use existing test/build/security checks appropriate to the change. Inspect comma
 before running unfamiliar scripts. Make regression checks prove behavior, including
 negative cases and boundaries. A missing tool or inaccessible environment is a gap,
 not a pass. Independent work can continue while a dependent gate is blocked.
+Stop repeating checks once the required checks pass unless a new change or concern
+justifies them. Preserve failed attempts and use the result to choose the next step.
 
 ## 6. Review evidence and finish honestly
 
@@ -103,6 +114,9 @@ Classify each required gate as `pass`, `fail`, `blocked` or `not_run`; `not_appl
 needs a specific reason. Associate passing gates with current evidence and the
 revision/artifact/environment they cover. A changed relevant input invalidates old
 evidence until rechecked. Documentation saying "complete" is not proof.
+The optional [helper](docs/v2/TOOLING.md) can generate pending records, hash explicit
+files, compare those files before closure, and require evidence kinds for named
+gates. These tools assist the agent; the user does not need to run them.
 
 Separate source inspection, automated tests, deployed identity and live acceptance.
 Close only the scope proven. Required failures, unknown policy, stale evidence and
@@ -113,6 +127,10 @@ Handoff: state what changed, why, checks and results, unresolved risks, and the 
 action if any. Include useful evidence links without secrets or raw customer data.
 For resumption, reread target instructions, current Git state, scope and evidence;
 reconcile changes before continuing. See the [operating model](docs/v2/OPERATING_MODEL.md).
+For long work, context compaction or interrupted sessions, retain a concise
+[checkpoint](docs/v2/SESSION_LOOP.md) with current inputs, unresolved obligations
+and the next useful action. Reuse existing records; do not restart completed work
+or treat a new message as cancellation unless it changes the objective.
 
 ## 7. Persistence is optional
 

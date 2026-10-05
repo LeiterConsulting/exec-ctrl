@@ -22,6 +22,14 @@ Use for behavior changes, audits, or uncertain/high risk.
   dead paths, changed defaults and error handling. Check changed public contracts
   against downstream consumers and migration needs.
 
+Make nonfunctional acceptance concrete: representative workload and budget for
+performance, actual input/focus/error flows for accessibility, and supported
+consumer/version combinations for compatibility. A synthetic or injected action
+may test a path while leaving real device or human acceptance pending. Stop
+repeating passing checks unless changed inputs or unresolved concerns justify them.
+Use [contract review](../templates/v2/CONTRACT_REVIEW.md) for a material disagreement;
+keep a narrow fix's evidence in the existing task.
+
 ## Evidence and gate
 
 `behavior`: acceptance criterion -> code path -> test or inspection evidence.

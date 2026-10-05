@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "framework_version": "2.0.0-preview.3",
+  "id": "synthetic-pending-release",
+  "objective": "Illustrate pending release obligations; no real approvals or evidence",
+  "subject": "synthetic-unverified-inputs",
+  "state": "not_started",
+  "facts": {
+    "kind": "release",
+    "risk": "high",
+    "signals": [
+      "production",
+      "team",
+      "enterprise"
+    ],
+    "whole_project": false
+  },
+  "rulesets": [
+    {
+      "id": "fictional-release-controls",
+      "source": "example://release-policy",
+      "revision": "fictional-1",
+      "owner": "Fictional release owner",
+      "sha256": "2a21c4df51a66aa10b50ddd36a42928adfda876731d4aa81e0f958010119b41f"
+    }
+  ],
+  "gates": [
+    {
+      "id": "scope",
+      "result": "not_run",
+      "evidence": [],
+      "reason": "Pending scoped verification"
+    },
+    {
+      "id": "policy",
+      "result": "not_run",
+      "evidence": [],
+      "reason": "Pending scoped verification"
+    },
+    {
+      "id": "verification",
+      "result": "not_run",
+      "evidence": [],
+      "reason": "Pending scoped verification"
+    },
+    {
+      "id": "review",
+      "result": "not_run",
+      "evidence": [],
+      "reason": "Pending scoped verification"
+    },
+    {
+      "id": "git-review",
+      "result": "not_run",
+      "evidence": [],
+      "reason": "Pending scoped verification"
+    },
+    {
+      "id": "behavior",
+      "result": "not_run",
+      "evidence": [],
+      "reason": "Pending scoped verification"
+    },
+    {
+      "id": "security-review",
+      "result": "not_run",
+      "evidence": [],
+      "reason": "Pending scoped verification"
+    },
+    {
+      "id": "delivery-readiness",
+      "result": "not_run",
+      "evidence": [],
+      "reason": "Pending scoped verification"
+    },
+    {
+      "id": "handoff",
+      "result": "not_run",
+      "evidence": [],
+      "reason": "Pending scoped verification"
+    },
+    {
+      "id": "enterprise-policy",
+      "result": "not_run",
+      "evidence": [],
+      "reason": "Pending scoped verification"
+    },
+    {
+      "id": "release-independent-approval",
+      "result": "not_run",
+      "evidence": [],
+      "reason": "Pending scoped verification",
+      "requires": [
+        "review"
+      ]
+    },
+    {
+      "id": "release-runtime-acceptance",
+      "result": "not_run",
+      "evidence": [],
+      "reason": "Pending scoped verification",
+      "requires": [
+        "deployment",
+        "live"
+      ]
+    }
+  ],
+  "evidence": []
+}

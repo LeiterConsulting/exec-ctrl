@@ -18,6 +18,13 @@ Use for releases, deployment, migration, production and CI changes.
 - Distinguish rollback of code from reversal of persisted data. Define post-release
   observation and support handoff; do not create ongoing automation unless requested.
 
+Use explicit acceptance gates for required build, deployed-identity and live stages.
+The helper's optional `requires` kinds can detect a declared build substituting for
+live evidence, but cannot inspect the report or runtime itself. An explicit-file
+snapshot helps identify dirty source; include relevant manifests/tests/instructions
+and separately record artifact/environment identity. Unlisted inputs remain outside
+that snapshot's coverage.
+
 ## Evidence and gate
 
 `delivery-readiness`: artifact/source identity, required checks, rollout/recovery

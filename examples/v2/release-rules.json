@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "id": "fictional-release-controls",
+  "source": "example://release-policy",
+  "revision": "fictional-1",
+  "owner": "Fictional release owner",
+  "required_modules": ["delivery", "team", "security"],
+  "gates": [
+    {
+      "id": "release-independent-approval",
+      "description": "Independent approval required; a kind tag cannot establish independence",
+      "source": "example://release-policy/review",
+      "owner": "Fictional reviewer",
+      "requires": ["review"]
+    },
+    {
+      "id": "release-runtime-acceptance",
+      "description": "Deployed identity and live acceptance required in the approved environment",
+      "source": "example://release-policy/runtime",
+      "owner": "Fictional operations owner",
+      "requires": ["deployment", "live"]
+    }
+  ]
+}

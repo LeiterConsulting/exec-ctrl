@@ -7,6 +7,7 @@ issue/PR. Replace examples with actual facts before relying on the record.
 
 - Objective and user-visible success:
 - Target, branch/revision or dirty snapshot:
+- Explicit snapshot inputs and excluded dependencies/environment state:
 - Method source/revision and local adaptations:
 - Scope, non-goals and current authorization:
 - Mode/risk and reasons; selected modules:
@@ -23,6 +24,8 @@ issue/PR. Replace examples with actual facts before relying on the record.
 
 Add gates from selected modules, company rules and product acceptance. Keep build,
 deployment and live acceptance distinct. A nonpassing result needs a reason.
+For machine records, `requires` can specify all evidence kinds a passing gate
+must include. Kind declarations still require review of the actual evidence.
 
 ## Execution and decisions
 
@@ -38,3 +41,4 @@ deployment and live acceptance distinct. A nonpassing result needs a reason.
 - Open gates, exact blocker, owner and next action:
 - Explicitly deferred scope and follow-up:
 - Final Git state; issue/PR synchronization status:
+- Checkpoint/next action if the session is interrupted:

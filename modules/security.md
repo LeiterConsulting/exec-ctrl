@@ -22,6 +22,13 @@ uncertain/high risk. Keep checks within the authorized repository/environment.
 - Fix in-scope vulnerabilities and test the denied/abuse path. Track other findings
   with severity rationale, owner, remediation and any authorized exception expiry.
 
+For a finding, distinguish vulnerable component presence from a reachable attack
+path and actual exposure. Record affected versions, principal/input, prerequisite,
+impact and uncertainty. Prioritize containment and remediation from that evidence.
+For agent/tool workflows, trace what a retrieved instruction could cause the tool
+to read, send or mutate; require existing authorization at that action boundary.
+After a fix, check both denied and allowed behavior without disabling the control.
+
 ## Evidence and gate
 
 `security-review`: affected boundaries reviewed, checks with tool/database date,

@@ -30,6 +30,12 @@ relevant. Do not infer a company's policy from an industry label.
   Keep the original rule visible. The preview helper does not process waivers;
   use the organization's review process for such decisions.
 
+Policy gates may declare evidence kinds with `requires`, such as `review` or
+`deployment` plus `live`. The helper unions those with the record's requirements;
+removing them from the saved gate cannot waive the supplied policy. Kind tags do
+not prove reviewer independence, scanner approval, jurisdictional compliance or
+report truth. Validate those against the named enforcing system and owner.
+
 ## Evidence and gate
 
 `enterprise-policy`: applicable rule inventory, disposition and evidence mapping.

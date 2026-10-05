@@ -18,6 +18,11 @@ Use for docs, features, planning, public contracts, onboarding and changed opera
 - Record meaningful decisions and evidence where the team will find them. Avoid
   duplicating full issue/PR content into several control documents.
 
+For agent instructions, keep the always-loaded contract small and route to relevant
+detail. Check native adapters against dated official documentation and observe
+retrieval separately. Document version/pinning and interrupted-session behavior.
+Correct active guidance without rewriting the evidence of previous releases.
+
 ## Evidence and gate
 
 `documentation`: affected audience/contracts identified, docs reconciled with the

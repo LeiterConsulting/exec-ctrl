@@ -20,6 +20,12 @@ Use for multiple owners, code review, issue systems and team handoffs.
 - Respect required independent review and separation of duties. An agent cannot
   impersonate a reviewer or approve its own restricted change.
 
+Use [integration mappings](../docs/v2/INTEGRATIONS.md) to fit the existing system.
+Before retrying an uncertain write, inspect whether it already happened. Preserve
+newer teammate edits, reconcile current review state and verify the resulting item.
+Keep a compact [checkpoint](../templates/v2/CHECKPOINT.md) when the next owner needs
+scope, evidence, failed attempts or exact blockers.
+
 ## Evidence and gate
 
 `handoff`: canonical work item (or clearly unsent draft), acceptance/evidence links,

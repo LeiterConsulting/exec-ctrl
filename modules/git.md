@@ -20,6 +20,12 @@ Always inspect applicability. A non-Git workspace requires no Git initialization
 - Report final Git state, including intentionally uncommitted files. Do not say
   "clean" merely because your own files were committed.
 
+For a published correction, verify the local/remote commit identity and the checks
+for that exact revision. Distinguish a local commit, pushed branch, open PR, merged
+change and released artifact. Recheck affected behavior after conflict resolution.
+For dirty input, HEAD alone cannot identify the tested source; use an appropriate
+diff/content identity with explicit coverage.
+
 ## Evidence and gate
 
 `git-review`: baseline state, final diff review and disposition of changes.

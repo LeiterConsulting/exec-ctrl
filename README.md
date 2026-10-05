@@ -35,7 +35,12 @@ report that limit; do not claim the framework was loaded.
 - **Portable activation:** plain Markdown works with any agent that can retrieve
   and follow it. Optional local adapters support future sessions.
 - **Checkable records:** an optional Python helper routes declared task facts,
-  adds enterprise gates and checks evidence-record structure without network access.
+  generates pending records, adds enterprise gates and checks evidence-record
+  structure without network access.
+- **Current-input evidence:** explicit-file snapshots detect changed inputs before
+  closure; required evidence kinds distinguish build, deployment and live stages.
+- **Session continuity:** checkpoints preserve scope, decisions, failed hypotheses
+  and the next action across interrupted work and changing context.
 
 ```mermaid
 flowchart LR
@@ -52,28 +57,28 @@ flowchart LR
 | --- | --- |
 | Use exec-ctrl now | [Activation contract](START_HERE.md) |
 | Understand the rules | [Operating model](docs/v2/OPERATING_MODEL.md) |
+| Apply controls to daily work | [Task playbooks](docs/v2/PLAYBOOKS.md) |
+| Resume or manage a long session | [Session loop](docs/v2/SESSION_LOOP.md) |
 | Configure an IDE | [Adapters and retrieval](docs/v2/ADAPTERS.md) |
 | Apply company policy | [Enterprise rules](modules/enterprise.md) |
+| Fit existing issue/PR systems | [Integration mappings](docs/v2/INTEGRATIONS.md) |
 | Use optional local checks | [Tooling](docs/v2/TOOLING.md) |
 | See task walkthroughs | [Examples](examples/v2/README.md) |
 | Upgrade an existing adoption | [Migration](docs/v2/MIGRATION.md) |
 | Assess readiness and next work | [Review and roadmap](docs/v2/ROADMAP.md) |
+| Track version changes | [Changelog](CHANGELOG.md) |
 | Maintain the framework | [Contributing](CONTRIBUTING.md) |
 
 ## Status
 
-**2.0.0-preview.2** includes fixes from adversarial testing of policy-record
-resumption, Markdown links and JSON input handling. The Markdown workflow and
-offline helper are usable for evaluation. Cross-agent field acceptance and a
-stable v2 release remain open; see the [validation record](docs/exec_ctrl/V2_FOUNDATION_AUDIT_LOG.md).
+**2.0.0-preview.3** adds session/checkpoint guidance, concrete task playbooks,
+pending-record generation, bounded content snapshots, typed policy/evidence gates
+and performance/accessibility/compatibility routing. See the
+[current review and evidence](docs/exec_ctrl/V2_SESSION_EVOLUTION.md).
 
-The first [controlled test project](docs/exec_ctrl/V2_CONTROLLED_LAB_RESULTS.md)
-passed 50 lab checks, and hosted Windows/Linux CI passed. Independent blind
-task-plus-link trials across IDEs remain pending.
-
-The [second test pass](docs/exec_ctrl/V2_SECOND_PASS_TESTING.md) passed 73 framework
-tests and 55 expanded lab checks, including 68 real HTTP checks. Windows/Linux CI
-passed; these controlled results remain separate from independent field trials.
+Previous [controlled lab results](docs/exec_ctrl/V2_SECOND_PASS_TESTING.md) remain
+versioned evidence. Independent task-plus-link trials across IDEs and the stable
+v2 release gate remain open; see [field trials](docs/v2/FIELD_TRIALS.md).
 
 A URL cannot force an IDE to retrieve instructions. exec-ctrl also cannot enforce
 permissions, branch protection or organizational policy by itself. Use the host's

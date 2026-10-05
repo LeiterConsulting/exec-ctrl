@@ -16,6 +16,10 @@ Change normative guidance before adapting examples and evidence records. Add tes
 for behavioral changes to routing, parsing, policy composition or evidence checks;
 do not add tests that only assert prose contains a preferred sentence. Check the
 entry contract's reading budget and inspect version/migration boundaries.
+Verify generated pending records and example policies as well as changed commands.
+Test denial, stale identity, malformed input and read-only behavior for new helper
+capabilities. Explicit-file snapshots must disclose their bounded scope; never
+auto-read secrets or execute commands to infer project facts.
 
 For provider-specific behavior, cite dated official documentation and distinguish
 documentation support from observed field results. Update the field-trial record

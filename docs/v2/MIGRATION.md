@@ -30,3 +30,10 @@ For ongoing work, review the new controls, create an updated record with the cur
 version, reroute its facts/policies and revalidate the evidence. Keep the original
 record and evidence intact. Preview.2 makes policy-file ordering irrelevant without
 weakening content hashes or allowing recorded policies to be omitted.
+
+Preview.3 keeps schema 1 and existing record fields, adding optional gate `requires`
+lists and optional current-snapshot checking. New snapshots and pending-record
+generation require no target adoption files. Existing helpers cannot interpret the
+new gate field, so keep historical records/helpers pinned. For ongoing work, review
+required evidence kinds and current input coverage before collecting fresh evidence.
+The new nonfunctional routing signals add controls without changing existing facts.

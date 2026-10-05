@@ -13,9 +13,13 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 MAX_JSON_BYTES = 2 * 1024 * 1024
+MAX_SNAPSHOT_FILES = 256
+MAX_SNAPSHOT_FILE_BYTES = 16 * 1024 * 1024
+MAX_SNAPSHOT_TOTAL_BYTES = 64 * 1024 * 1024
 STATES = {"not_started", "in_progress", "blocked", "complete", "deferred"}
 RESULTS = {"pass", "fail", "blocked", "not_run", "not_applicable"}
 EVIDENCE_KINDS = {"inspection", "test", "build", "deployment", "live", "review"}
+SNAPSHOT_LIMITS = "Explicit files only; excludes unlisted inputs and environment state. Per-file reads, not an atomic repository snapshot."
 
 
 class Invalid(ValueError):
@@ -94,6 +98,60 @@ def local_file(root, name):
     return path
 
 
+def snapshot(target, names):
+    """Hash only explicitly selected local files, never discover or execute inputs."""
+    root = Path(target).resolve()
+    require(root.is_dir(), "snapshot target must be a directory")
+    strings(names, "snapshot paths")
+    require(0 < len(names) <= MAX_SNAPSHOT_FILES, "snapshot requires 1 to 256 files")
+    files = []
+    seen = set()
+    total = 0
+    for name in names:
+        path = local_file(root, name)
+        candidate = root / name
+        require(".." not in Path(name).parts and candidate.absolute() == path,
+                "snapshot paths cannot contain parent traversal, symbolic links or redirected directories")
+        require(path not in seen, "snapshot contains aliases of the same file")
+        seen.add(path)
+        digest = hashlib.sha256()
+        size = 0
+        with path.open("rb") as stream:
+            while True:
+                chunk = stream.read(1024 * 1024)
+                if not chunk:
+                    break
+                size += len(chunk)
+                total += len(chunk)
+                require(size <= MAX_SNAPSHOT_FILE_BYTES, "snapshot file exceeds 16 MiB limit")
+                require(total <= MAX_SNAPSHOT_TOTAL_BYTES, "snapshot exceeds 64 MiB total limit")
+                digest.update(chunk)
+        files.append({"path": path.relative_to(root).as_posix(), "sha256": digest.hexdigest(), "bytes": size})
+    files.sort(key=lambda item: item["path"])
+    identity = json.dumps(files, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
+    return {"schema_version": 1, "subject": "sha256:" + hashlib.sha256(identity.encode("utf-8")).hexdigest(),
+            "files": files, "limits": SNAPSHOT_LIMITS}
+
+
+def check_snapshot(manifest, target):
+    object_fields(manifest, {"schema_version", "subject", "files", "limits"})
+    require(type(manifest["schema_version"]) is int and manifest["schema_version"] == 1, "unsupported snapshot schema")
+    nonempty(manifest["subject"], "snapshot subject")
+    require(manifest["limits"] == SNAPSHOT_LIMITS, "snapshot scope limits changed")
+    require(isinstance(manifest["files"], list), "snapshot files must be a list")
+    require(0 < len(manifest["files"]) <= MAX_SNAPSHOT_FILES, "snapshot requires 1 to 256 files")
+    paths = []
+    for item in manifest["files"]:
+        object_fields(item, {"path", "sha256", "bytes"})
+        paths.append(nonempty(item["path"], "snapshot path"))
+        require(isinstance(item["sha256"], str) and re.fullmatch(r"[0-9a-f]{64}", item["sha256"]), "invalid file digest")
+        require(type(item["bytes"]) is int and 0 <= item["bytes"] <= MAX_SNAPSHOT_FILE_BYTES, "invalid snapshot file size")
+    current = snapshot(target, paths)
+    require(sorted(manifest["files"], key=lambda item: item["path"]) == current["files"], "snapshot files changed or manifest is inconsistent")
+    require(manifest["subject"] == current["subject"], "snapshot subject does not match current files")
+    return current["subject"]
+
+
 def validate_catalog(catalog, root=ROOT):
     object_fields(catalog, {"schema_version", "framework_version", "entry", "kinds", "risks", "signals", "high_risk_signals", "base_gates", "modules"})
     require(type(catalog["schema_version"]) is int and catalog["schema_version"] == 1, "unsupported catalog schema")
@@ -146,9 +204,10 @@ def validate_rules(rules, catalog):
         require(set(strings(rule["required_modules"], "required_modules")) <= module_ids, "unknown required module")
         unique_objects(rule["gates"], "policy gates")
         for gate in rule["gates"]:
-            object_fields(gate, {"id", "description", "source", "owner"})
-            for key in gate:
+            object_fields(gate, {"id", "description", "source", "owner"}, {"requires"})
+            for key in ("id", "description", "source", "owner"):
                 nonempty(gate[key], "policy gate " + key)
+            require(set(strings(gate.get("requires", []), "policy evidence requirements")) <= EVIDENCE_KINDS, "unknown policy evidence kind")
             require(gate["id"] not in gate_ids, "policy gate collides with another gate")
             gate_ids.add(gate["id"])
 
@@ -198,16 +257,36 @@ def route(facts, catalog, rules=()):
         mode = "task"
     return {"framework_version": catalog["framework_version"], "mode": mode,
             "effective_risk": risk, "modules": selected, "required_gates": gates,
+            "gate_requirements": {g["id"]: g["requires"] for r in rules for g in r["gates"] if g.get("requires")},
             "rulesets": [rule_identity(r) for r in rules],
             "limits": "Declared facts only; no repository inspection, enforcement, or evidence truth verification."}
 
 
-def check_record(record, catalog, rules=()):
+def record_template(facts, catalog, identifier, objective, subject, rules=()):
+    """Generate pending obligations, never synthetic passes or execution commands."""
+    for value, label in ((identifier, "id"), (objective, "objective"), (subject, "subject")):
+        nonempty(value, label)
+    plan = route(facts, catalog, rules)
+    gates = []
+    for gate_id in plan["required_gates"]:
+        gate = {"id": gate_id, "result": "not_run", "evidence": [], "reason": "Pending scoped verification"}
+        if gate_id in plan["gate_requirements"]:
+            gate["requires"] = list(plan["gate_requirements"][gate_id])
+        gates.append(gate)
+    return {"schema_version": 1, "framework_version": catalog["framework_version"],
+            "id": identifier, "objective": objective, "subject": subject, "state": "not_started",
+            "facts": {**facts, "signals": list(facts["signals"])},
+            "rulesets": plan["rulesets"], "gates": gates, "evidence": []}
+
+
+def check_record(record, catalog, rules=(), expected_subject=None):
     object_fields(record, {"schema_version", "framework_version", "id", "objective", "subject", "state", "facts", "rulesets", "gates", "evidence"})
     require(type(record["schema_version"]) is int and record["schema_version"] == 1, "unsupported record schema")
     require(record["framework_version"] == catalog["framework_version"], "framework version mismatch")
     for key in ("id", "objective", "subject"):
         nonempty(record[key], key)
+    if expected_subject is not None:
+        require(record["subject"] == nonempty(expected_subject, "expected subject"), "record subject does not match current snapshot")
     choice(record["state"], STATES, "state")
     plan = route(record["facts"], catalog, rules)
     unique_objects(record["rulesets"], "record rulesets")
@@ -227,7 +306,10 @@ def check_record(record, catalog, rules=()):
     require(set(plan["required_gates"]) <= present, "record is missing required gates")
     unresolved = []
     for gate in record["gates"]:
-        object_fields(gate, {"id", "result", "evidence", "reason"})
+        object_fields(gate, {"id", "result", "evidence", "reason"}, {"requires"})
+        kinds = set(strings(gate.get("requires", []), "gate evidence requirements"))
+        require(kinds <= EVIDENCE_KINDS, "unknown gate evidence kind")
+        kinds.update(plan["gate_requirements"].get(gate["id"], []))
         choice(gate["result"], RESULTS, "gate result")
         refs = strings(gate["evidence"], "gate evidence")
         require(set(refs) <= evidence.keys(), "gate refers to missing evidence")
@@ -238,6 +320,7 @@ def check_record(record, catalog, rules=()):
             require(bool(refs), "passing gate requires evidence")
             require(all(evidence[e]["result"] == "pass" for e in refs), "passing gate cites failed evidence")
             require(all(evidence[e]["subject"] == record["subject"] for e in refs), "passing gate cites stale/different subject evidence")
+            require(kinds <= {evidence[e]["kind"] for e in refs}, "passing gate is missing required evidence kinds: " + gate["id"])
         else:
             nonempty(gate["reason"], "nonpassing gate reason")
             if gate["result"] != "not_applicable" or gate["id"] != "git-review":
@@ -467,36 +550,57 @@ def validate_repository(root=ROOT):
         require("START_HERE.md" in local_file(root, name).read_text(encoding="utf-8"), "entry route missing: " + name)
     require((root / "CLAUDE.md").read_text(encoding="utf-8").strip() == "@AGENTS.md", "Claude adapter drift")
     require({p.relative_to(root).as_posix() for p in (root / "modules").glob("*.md")} == {m["path"] for m in catalog["modules"]}, "uncatalogued or missing module")
+    example_rules = [read_json(root / "examples/v2/team-rules.json"), read_json(root / "examples/v2/release-rules.json")]
+    validate_rules(example_rules, catalog)
+    check_record(read_json(root / "examples/v2/docs-record.json"), catalog)
+    check_record(read_json(root / "examples/v2/pending-release-record.json"), catalog, [example_rules[1]])
     checked = check_links(root)
     return {"valid": True, "version": version, "modules": len(catalog["modules"]), "local_links_checked": checked,
-            "limits": "Local paths only; external URLs, anchors and actual agent behavior are not verified."}
+            "limits": "Catalog, examples and supported local links only; external URLs, anchors and actual agent behavior are not verified."}
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("validate", help="check framework catalog, entry coherence and local links")
-    routing = commands.add_parser("route", help="route explicit facts; does not inspect a target repository")
-    routing.add_argument("--kind", required=True)
-    routing.add_argument("--risk", default="unknown")
-    routing.add_argument("--signal", action="append", default=[])
-    routing.add_argument("--whole-project", action="store_true")
-    routing.add_argument("--rules", action="append", default=[])
+    for name, help_text in [("route", "route explicit facts; does not inspect a target repository"),
+                            ("record-template", "generate a pending record on stdout from explicit facts")]:
+        routing = commands.add_parser(name, help=help_text)
+        routing.add_argument("--kind", required=True)
+        routing.add_argument("--risk", default="unknown")
+        routing.add_argument("--signal", action="append", default=[])
+        routing.add_argument("--whole-project", action="store_true")
+        routing.add_argument("--rules", action="append", default=[])
+        if name == "record-template":
+            routing.add_argument("--id", required=True)
+            routing.add_argument("--objective", required=True)
+            routing.add_argument("--subject", required=True)
+    hashing = commands.add_parser("snapshot", help="hash explicitly selected files; prints a manifest without writing files")
+    hashing.add_argument("--target", required=True)
+    hashing.add_argument("--path", action="append", required=True)
     checking = commands.add_parser("check-record", help="validate declared completion evidence")
     checking.add_argument("record")
     checking.add_argument("--rules", action="append", default=[])
+    checking.add_argument("--snapshot", help="explicit manifest to compare with current target files")
+    checking.add_argument("--target", help="target root used together with --snapshot")
     args = parser.parse_args(argv)
     try:
         if args.command == "validate":
             result = validate_repository()
+        elif args.command == "snapshot":
+            result = snapshot(args.target, args.path)
         else:
             catalog = load_catalog()
             rules = [read_json(p) for p in args.rules]
-            if args.command == "route":
-                result = route({"kind": args.kind, "risk": args.risk,
-                                "signals": args.signal, "whole_project": args.whole_project}, catalog, rules)
+            if args.command in {"route", "record-template"}:
+                facts = {"kind": args.kind, "risk": args.risk,
+                         "signals": args.signal, "whole_project": args.whole_project}
+                result = route(facts, catalog, rules) if args.command == "route" else record_template(
+                    facts, catalog, args.id, args.objective, args.subject, rules)
             else:
-                result = check_record(read_json(args.record), catalog, rules)
+                require(bool(args.snapshot) == bool(args.target), "--snapshot and --target must be supplied together")
+                subject = check_snapshot(read_json(args.snapshot), args.target) if args.snapshot else None
+                result = check_record(read_json(args.record), catalog, rules, expected_subject=subject)
         print(json.dumps(result, indent=2))
         if args.command == "check-record" and not result["ready_to_close"]:
             return 1

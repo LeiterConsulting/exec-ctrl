@@ -18,6 +18,11 @@ Use for fixes, failures, incidents and unexplained behavior.
 6. Verify both the reported symptom and nearby regression risks. Update the runbook
    or known-issue record if the diagnosis teaches something reusable.
 
+At interruption, retain the discriminating results and excluded causes in the
+existing checkpoint. On resumption, check whether inputs changed before repeating
+an attempt. If only mitigation is supported, identify it as mitigation and retain
+the unresolved cause. Use [the session loop](../docs/v2/SESSION_LOOP.md).
+
 ## Evidence and gate
 
 `diagnosis`: symptom, tested hypothesis, cause (or explicitly unresolved cause),

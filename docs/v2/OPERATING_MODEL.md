@@ -51,6 +51,17 @@ prove different things. A claimed pass with stale inputs requires revalidation.
 The helper checks matching declared subjects and referenced results; it does not
 read reports to verify truth or detect an author mislabeling a snapshot.
 
+Optional tools reduce bookkeeping: `record-template` creates pending routed gates;
+`snapshot` identifies only explicit files; `check-record --snapshot ... --target ...`
+rehashes those inputs before accepting their subject. Select the relevant source,
+tests, manifests and instructions. Record omitted inputs and environment identity
+separately. A snapshot is bounded per-file reading, not an atomic whole-tree capture.
+
+Gate `requires` lists specify all needed evidence kinds. Supplied policy
+requirements compose additively even when omitted from the saved gate. These
+checks catch declared build/live confusion; actual reports, actors and applicability
+remain review obligations. See [tooling](TOOLING.md).
+
 ## Dependencies and continuation
 
 The active milestone is the earliest unmet prerequisite on the current dependency
@@ -61,6 +72,8 @@ At a checkpoint or handoff, preserve current scope, target state, selected modul
 decisions, evidence, blockers/owners and next action. On resumption, inspect the
 current instructions and Git state and compare them with the record. Reassess
 controls if scope, data sensitivity, dependencies or production impact changed.
+Use [the session loop](SESSION_LOOP.md) and [task playbooks](PLAYBOOKS.md) for
+concrete intake, checkpoints, failure handling and resumption.
 
 ## Advisory versus enforced
 
