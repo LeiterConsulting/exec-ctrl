@@ -7,6 +7,9 @@ the authoring task. This file is the independent-trial protocol, not a claim tha
 the scenarios below passed across IDEs. A later
 [Ping Monitor revisit](../exec_ctrl/REAL_PROJECT_PING_MONITOR.md) exercised a
 bounded fix in an existing real project; it was also a controlled authoring run.
+The [existing application trial](../exec_ctrl/REAL_PROJECT_FACILITY_OPERATIONS.md)
+adds local regression and installed-baseline checks, with candidate deployment
+acceptance explicitly pending. Neither revisit establishes blind adoption.
 
 For each host, use a disposable target repository with realistic instructions,
 code and tests. Record host/version/settings, date, method commit, target baseline,
@@ -60,3 +63,24 @@ production systems just to obtain coverage. Record actual tool versions, prompt,
 method revision, exercised controls, unavailable checks and any useful framework
 improvement. Label preloaded context and author review explicitly. A controlled
 revisit does not satisfy the independent task-plus-link trial above.
+
+For an already installed application, inspect verification scripts and selected
+flags before running them. A script named "verify" may also install software,
+create users, alter shared configuration or write fixtures. Use only operations
+within the accepted scope; retain private connection data and raw receipts outside
+public framework records. Publish the reusable observation and public correction
+when relevant, rather than the environment inventory or authentication details.
+
+Identify the running assets separately from the local build. After a source repair,
+baseline lab passes remain evidence for the older deployment. Keep candidate
+installation and native acceptance pending until that candidate is authorized and
+observed. Do not substitute local build evidence or relabel an older subject to
+close a declared live gate. Compare scoped shared state before and after checks;
+state what was actually compared rather than claiming complete immutability.
+
+Keep platform skips and scanner scope visible. A denied symlink fixture is not a
+passing linked-input test; use a capable host for that boundary when available.
+Record the scanner version, warnings and skipped checks. An older local scanner
+does not replace a newer required scanner or external certification. Retain the
+failing reproduction and fresh passing regression, even when the original suite
+was green.
