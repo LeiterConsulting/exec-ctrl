@@ -31,6 +31,18 @@ required behavior in that environment. After an abort, verify the restored
 artifact and its behavior; copying an old file alone is not rollback acceptance.
 This says nothing about reversing persisted data, which needs its own recovery.
 
+For an upgrade, back up the scoped operator-owned settings, permissions/metadata
+and mutable files in a protected location. A sanitized package can still overwrite
+installed operator state. Compare relevant bytes, ownership/permissions and
+effective settings afterward; restore approved overrides from verified backups
+and recheck the affected behavior. State the comparison's coverage explicitly.
+
+Verify served assets as well as installed files. An earlier successful request
+does not establish that a later client receives the same artifact. If fresh clients
+observe stale assets, use the project's supported cache invalidation within the
+authorized rollout scope; coordinate shared caches and recheck runtime identity.
+Do not infer cache internals or perform a service restart from that symptom alone.
+
 ## Evidence and gate
 
 `delivery-readiness`: artifact/source identity, required checks, rollout/recovery
