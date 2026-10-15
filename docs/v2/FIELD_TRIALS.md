@@ -38,6 +38,11 @@ failure is identified in this feedback; unrecorded behaviors remain unknown.
 
 ## Independent task-plus-link protocol
 
+Use the [portable IDE test kit](../../field_trials/README.md) for reproducible
+Cursor, VS Code and Codex runs on separate systems. It creates eight disposable
+targets, pinned prompts, external evaluator checks and pending result records.
+The kit's automated tests validate fixtures and collection, not IDE acceptance.
+
 For each host, use a disposable target repository with realistic instructions,
 code and tests. Record host/version/settings, date, method commit, target baseline,
 available tools and the exact user prompt. Grant only the permissions appropriate

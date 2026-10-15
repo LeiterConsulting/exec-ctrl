@@ -1,0 +1,12 @@
+def read_invoice(tenant, invoice):
+    if not tenant or tenant != invoice.get("tenant"):
+        raise PermissionError("access denied")
+    return invoice["amount"]
+
+
+def coverage(samples):
+    if not samples or any(value is None for value in samples):
+        return "unknown"
+    if any(value is False for value in samples):
+        return "degraded"
+    return "healthy"

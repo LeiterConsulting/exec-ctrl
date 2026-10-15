@@ -21,6 +21,7 @@ the optional helper itself remains offline and read-only.
 | `test_session_tools.py` | Pending records, typed evidence requirements, current-file snapshots, containment and resource bounds |
 | `test_publication_readiness.py` | Complete disposable project workflow, all modes/modules through 94 routing cases, audited CLI behavior, history preservation, unstable capture and stale release-metadata denial |
 | `test_release_acceptance.py` | Real disposable zipapp build/staging/runtime/rollback, required review hold, unavailable policy, inert metadata and a guarded private-file canary |
+| `test_ide_field_trials.py` | Portable IDE-kit preparation, seeded failure/repair, preservation, opt-in behavior checks, stale-result denial and scoped result bundles; no IDE is driven |
 
 ## Reproducible project acceptance
 
@@ -70,7 +71,8 @@ and separately accept stable files immediately after repeated rewrites. Metadata
 checks cannot establish an atomic multi-file snapshot or defeat every concurrent
 writer; immutable inputs and closure comparison remain necessary.
 
-Two symlink tests skip only when the host cannot create symlinks. Report skips
+The helper's two symlink tests and the IDE kit's linked-evidence test skip only
+when the host cannot create symlinks. Report skips
 separately from passes and inspect hosted job logs before claiming those paths passed.
 Capture mutation tests use controlled read boundaries, not timing-dependent sleeps.
 

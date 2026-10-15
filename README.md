@@ -66,6 +66,7 @@ flowchart LR
 | Apply controls to daily work | [Task playbooks](docs/v2/PLAYBOOKS.md) |
 | Resume or manage a long session | [Session loop](docs/v2/SESSION_LOOP.md) |
 | Configure an IDE | [Adapters and retrieval](docs/v2/ADAPTERS.md) |
+| Test on separate IDE systems | [Portable Cursor, VS Code and Codex test kit](field_trials/README.md) |
 | Apply company policy | [Enterprise rules](modules/enterprise.md) |
 | Fit existing issue/PR systems | [Integration mappings](docs/v2/INTEGRATIONS.md) |
 | Use optional local checks | [Tooling](docs/v2/TOOLING.md) |

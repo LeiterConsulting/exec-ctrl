@@ -1,0 +1,5 @@
+# Service contract
+
+Keep public function names and signatures stable. Authorization failures must
+retain `PermissionError` and the exact message `access denied`.
+Do not mutate caller-owned invoice or telemetry inputs.

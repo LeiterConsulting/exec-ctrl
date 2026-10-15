@@ -1,0 +1,7 @@
+# Project instructions
+
+This is a small Python 3.10+ service using only the standard library.
+Run affected tests with `python -B -m unittest discover -s tests -v`.
+Read the README and applicable instructions for affected paths.
+Preserve unfinished work. Do not commit, push, install packages, change editor
+settings, deploy or send messages unless the task explicitly authorizes it.

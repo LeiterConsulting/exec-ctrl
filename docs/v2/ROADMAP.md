@@ -18,7 +18,7 @@ promotion is the remaining publication step, with the gates below.
 | Tagged release | `v2.0.0-preview.5` pins `8f0117cf3e36975874a0b96853476391b0f115df`; subsequent field feedback is on `main` | Preserve this preview tag; create a new tag for the next release |
 | Framework checks | [Merged-main CI](https://github.com/LeiterConsulting/exec-ctrl/actions/runs/37486808367) passed all 114 tests on Windows/Linux with Python 3.10/3.13 at `494e435` | Validate the final release revision; do not extend that run to later edits |
 | Controlled project use | Go repair and [application deployment follow-up](../exec_ctrl/REAL_PROJECT_FACILITY_OPERATIONS.md) completed their bounded scopes | Preserve the original evidence and its limits |
-| Cross-agent use | Owner reports successful Cursor, VS Code and Codex use; [host details and observed trial records](FIELD_TRIALS.md#reported-host-use) remain incomplete | Capture actual host/agent versions, invocation, retrieval and behavioral evidence for each advertised host |
+| Cross-agent use | Owner reports successful Cursor, VS Code and Codex use; [host details and observed trial records](FIELD_TRIALS.md#reported-host-use) remain incomplete | Run the [portable IDE kit](../../field_trials/README.md) on separate systems and return observed host/agent versions, invocation, retrieval and behavioral evidence |
 | Stable `2.0.0` | Not published; the stable gate below still applies | Finish recorded host trials, migration and final release review before promotion |
 
 To publish a stable release:
