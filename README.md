@@ -6,12 +6,14 @@ Give your agent the work and this repository:
 
 > Fix the checkout retry bug. Use https://github.com/LeiterConsulting/exec-ctrl
 
-The default branch, `main`, carries the current v2 preview. See the
+**v2 is the current generation on the default branch, `main`.** Give your agent
+the repository link for current guidance. The
 [preview 5 release](https://github.com/LeiterConsulting/exec-ctrl/releases/tag/v2.0.0-preview.5)
-for changes and verification. For reproducible adoption, give your agent the
+is the latest tagged preview; `main` also includes subsequent field feedback.
+For reproducible adoption, give your agent a reviewed commit or the
 [version tag](https://github.com/LeiterConsulting/exec-ctrl/tree/v2.0.0-preview.5)
-and retrieve all instructions from that revision. The older `v2` branch is historical;
-use `main` for current updates. The preserved [v1 guide](V1_README.md) remains available.
+and retrieve all instructions from that revision. The older `v2` branch is historical.
+The preserved [v1 guide](V1_README.md) remains available.
 
 The agent reads the entry instructions, inspects your project, selects relevant
 controls, and carries them through implementation, verification and handoff.
@@ -81,7 +83,14 @@ identity despite a healthy response, preserves required review holds, and reject
 stale README/changelog versions during repository validation. It retains the compact
 activation entry, session controls, typed policy gates and offline, read-only helper.
 See [preview 5 publication evidence](docs/exec_ctrl/V2_PREVIEW_5_PUBLICATION.md) and
-[test coverage](tests/README.md) for current results and reproduction commands.
+[test coverage](tests/README.md) for that release's results and reproduction commands.
+
+Subsequent updates on `main` include the
+[completed application trial](docs/exec_ctrl/REAL_PROJECT_FACILITY_OPERATIONS.md)
+and delivery guidance for preserving operator state during upgrades and checking
+fresh served assets. The framework owner also reports successful use in **Cursor,
+VS Code and Codex**. The [field record](docs/v2/FIELD_TRIALS.md) distinguishes that
+reported experience from controlled tests and host trials with captured evidence.
 
 The [Ping Monitor revisit](docs/exec_ctrl/REAL_PROJECT_PING_MONITOR.md) exercised a
 real Go defect in an isolated worktree. The
@@ -94,8 +103,10 @@ its 97-test hosted validation and controlled lab results. Those historical resul
 are not proof of this revision.
 
 Previous [controlled lab results](docs/exec_ctrl/V2_SECOND_PASS_TESTING.md) remain
-versioned evidence. Independent task-plus-link trials across IDEs and the stable
-v2 release gate remain open; see [field trials](docs/v2/FIELD_TRIALS.md).
+versioned evidence. A stable `2.0.0` release still needs recorded host/version
+trials and final migration/release checks; see the
+[current publication checklist](docs/v2/ROADMAP.md#current-publication-state)
+and [field-trial protocol](docs/v2/FIELD_TRIALS.md).
 
 A URL cannot force an IDE to retrieve instructions. exec-ctrl also cannot enforce
 permissions, branch protection or organizational policy by itself. Use the host's
