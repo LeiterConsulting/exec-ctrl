@@ -1,15 +1,42 @@
 # Cross-agent field trials
 
-Status: independent blind cross-agent trials not run. The
+Status reviewed 2026-10-15: the framework owner reports successful use in Cursor,
+VS Code and Codex. Detailed independent task-plus-link trial records have not
+been supplied; the scenario matrix below remains a protocol, not a passing result.
+See [reported host use](#reported-host-use) for the available evidence and gaps.
+
+The
 [controlled local lab](../exec_ctrl/V2_CONTROLLED_LAB_RESULTS.md) and
 [adversarial second pass](../exec_ctrl/V2_SECOND_PASS_TESTING.md) completed in
-the authoring task. This file is the independent-trial protocol, not a claim that
-the scenarios below passed across IDEs. A later
+the authoring task. A later
 [Ping Monitor revisit](../exec_ctrl/REAL_PROJECT_PING_MONITOR.md) exercised a
 bounded fix in an existing real project; it was also a controlled authoring run.
 The [existing application trial](../exec_ctrl/REAL_PROJECT_FACILITY_OPERATIONS.md)
-adds local regression and installed-baseline checks, with candidate deployment
-acceptance explicitly pending. Neither revisit establishes blind adoption.
+adds local regression, candidate deployment, native workflows and scoped state
+preservation checks. Its authorized follow-up completed the bounded native gate;
+the initial pending record remains historical. Neither revisit establishes blind
+adoption across IDEs.
+
+## Reported host use
+
+Recorded 2026-10-15 from the owner's feedback in the development thread:
+
+> Exec-ctrl works GREAT in Cursor and VS Code as well as Codex so far.
+
+| Reported environment | Available evidence | Details not supplied |
+| --- | --- | --- |
+| Cursor | Owner-reported successful use | Host/model versions, settings, method revision, task prompt, retrieval transcript, diff and per-axis results |
+| VS Code | Owner-reported successful use | Agent/extension identity and version, model/settings, method revision, task prompt, retrieval transcript, diff and per-axis results |
+| Codex | Owner-reported successful use, separately from the controlled authoring trials linked above | Host/model versions, settings, method revision, task prompt, retrieval transcript, diff and per-axis results for the reported sessions |
+
+This is useful field feedback about practical use. It does not identify the VS Code
+agent as GitHub Copilot, establish blind retrieval, or supply pass/fail results for
+the scenarios below. Capture those details in the
+[observed-trial template](../../templates/v2/FIELD_TRIAL.md) when available; do not
+reconstruct a transcript or assign a source revision from this summary. No reported
+failure is identified in this feedback; unrecorded behaviors remain unknown.
+
+## Independent task-plus-link protocol
 
 For each host, use a disposable target repository with realistic instructions,
 code and tests. Record host/version/settings, date, method commit, target baseline,

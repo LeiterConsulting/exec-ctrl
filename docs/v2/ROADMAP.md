@@ -1,7 +1,40 @@
 # v2 review and delivery roadmap
 
-Baseline reviewed: `68f5c4a`, 2026-09-23. This roadmap is planning; current evidence
-lives in the [foundation record](../exec_ctrl/V2_FOUNDATION_EXEC_CTRL.md).
+Original baseline reviewed: `68f5c4a`, 2026-09-23. The foundation sections retain
+that review. Current publication status is recorded below; earlier results remain
+attached to their original revisions.
+
+## Current publication state
+
+Reviewed 2026-10-15 against `main` at
+`494e43550d73d270f5948fffb8054452cdd7a313` and the owner's subsequent host feedback.
+v2 is already the default framework in the main repository. Stable release
+promotion is the remaining publication step, with the gates below.
+
+| Requirement | Current evidence / state | Next action |
+| --- | --- | --- |
+| Current repository entry | `main` starts with v2; the older `v2` branch and v1 guide are historical | Use the repository URL for current instructions; pin a reviewed commit for reproducibility |
+| Reuse terms | Owner-selected MIT license is published | Retain the license |
+| Tagged release | `v2.0.0-preview.5` pins `8f0117cf3e36975874a0b96853476391b0f115df`; subsequent field feedback is on `main` | Preserve this preview tag; create a new tag for the next release |
+| Framework checks | [Merged-main CI](https://github.com/LeiterConsulting/exec-ctrl/actions/runs/37486808367) passed all 114 tests on Windows/Linux with Python 3.10/3.13 at `494e435` | Validate the final release revision; do not extend that run to later edits |
+| Controlled project use | Go repair and [application deployment follow-up](../exec_ctrl/REAL_PROJECT_FACILITY_OPERATIONS.md) completed their bounded scopes | Preserve the original evidence and its limits |
+| Cross-agent use | Owner reports successful Cursor, VS Code and Codex use; [host details and observed trial records](FIELD_TRIALS.md#reported-host-use) remain incomplete | Capture actual host/agent versions, invocation, retrieval and behavioral evidence for each advertised host |
+| Stable `2.0.0` | Not published; the stable gate below still applies | Finish recorded host trials, migration and final release review before promotion |
+
+To publish a stable release:
+
+1. Complete the [field-trial records](FIELD_TRIALS.md) for the hosts the release
+   advertises, including representative boundaries and any repaired failures.
+   Keep successful owner reports distinct from directly observed test results.
+2. Check migration against existing instructions and active records, retaining
+   historical records/helpers and unresolved obligations. Review the known limits.
+3. Advance VERSION, catalog, activation, README, newest changelog entry and active
+   examples together. Run repository validation, the full test suite, whitespace
+   checks and the hosted matrix on the release candidate. Check the source archive.
+4. Review and merge that exact candidate, verify the merged tree and checks, then
+   create an immutable `v2.0.0` tag and publish its release with evidence links.
+   Leave previous preview tags intact. A new release must identify its own tested
+   revision instead of reusing old passing claims.
 
 ## Existing version: retain and change
 
